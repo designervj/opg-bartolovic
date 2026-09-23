@@ -1,0 +1,6 @@
+{
+  "name": "OPG Bartolović - Prirodni domaći med",
+  "description": "OPG Bartolović - Iz košnice do tvog doma, prirodno, s ljubavlju. Vrhunski slavonski med iz vlastitih pčelinjaka u Valpovu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

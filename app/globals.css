@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --surface: #FFFFFF;
+  --muted: #F3F4F6;
+  --border: #E5E7EB;
+  --ring: #F5A623;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius: 0.5rem;
+  
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+  --primary: #C6AF87;
+  --primary-foreground: #646772;
+  --secondary: #F7F3F0; 
+  --secondary-foreground: #646772;
+  --accent: #F9E4B7;
+  --accent-foreground: #4A3B28;
+  
+  --background: #ffffff;
+  --foreground: #232323;
+  
+  --destructive: #EF4444;
+}
+
+[data-theme="dark"], .dark {
+  --background: #1C1917;
+  --foreground: #FDFBF7;
+  --surface: #292524;
+  --primary: #F5A623;
+  --primary-foreground: #1C1917;
+  --secondary: #4A3B28;
+  --secondary-foreground: #ffffff;
+  --muted: #44403C;
+  --border: #44403C;
+  --ring: #F5A623;
+}
+
+@theme {
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --font-mono: var(--font-montserrat), "Montserrat", sans-serif;
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+
+  --animate-scale-in: scale-in 180ms ease-out both;
+  --animate-fade-in: fade-in 220ms ease-out both;
+  --animate-slide-up: slide-up 240ms ease-out both;
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.86);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply font-sans bg-background text-foreground;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.2px;
+    scroll-behavior: smooth;
+  }
+  h1 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: 3px;
+  }
+  @media (min-width: 640px) {
+    h1 {
+      font-size: 38px;
+      letter-spacing: 5px;
+    }
+  }
+  @media (min-width: 1024px) {
+    h1 {
+      font-size: 48px !important;
+      line-height: 64px;
+      letter-spacing: 6px;
+    }
+  }
+  h2 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: 3px;
+  }
+  @media (min-width: 640px) {
+    h2 {
+      font-size: 26px;
+      letter-spacing: 5px;
+    }
+  }
+  @media (min-width: 1024px) {
+    h2 {
+      font-size: 32px !important;
+      line-height: 44px;
+      letter-spacing: 6px;
+    }
+  }
+  h4 {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: 0px;
+  }
+  @media (min-width: 1024px) {
+    h4 {
+      font-size: 24px;
+      line-height: 34px;
+    }
+  }
+  button, .global-btn {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: 0.2px;
+  }
+  .menu-link {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    padding: 4px 0;
+  }
+  .menu-link.active {
+    color: var(--primary);
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary);
+  }
+  .menu-link:hover:not(.active) {
+    color: var(--primary);
+  }
+}
+
+@layer utilities {
+  .font-mono-custom {
+    font-family: var(--font-space-mono), monospace;
+  }
+  .font-sans-custom {
+    font-family: var(--font-plus-jakarta-sans), sans-serif;
+  }
+  .clip-hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+}

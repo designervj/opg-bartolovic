@@ -72,10 +72,10 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                   step="1"
                   value={maxPrice}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
-                  className="w-full h-1 bg-foreground rounded-lg appearance-none cursor-pointer accent-neutral-900"
+                  className="w-full h-1 bg-primary rounded-lg appearance-none cursor-pointer accent-neutral-900"
                 />
                 
-                <div className="flex justify-between items-center mt-3 text-foreground tabular-nums">
+                <div className="flex justify-between items-center mt-3 text-primary-foreground font-bold tabular-nums">
                   <span>{minPrice}€</span>
                   <span>{maxPrice}€</span>
                 </div>
@@ -85,9 +85,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
             {/* 2. Categories */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[17px] text-foreground">
+                <h4 className=" text-foreground f">
                   Categories
-                </h3>
+                </h4>
                 {selectedCategory && (
                   <button
                     onClick={() => setSelectedCategory(null)}
@@ -113,9 +113,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                       >
                         <span className="flex items-center gap-2">
                           {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-primary" />}
-                          <span>{cat.name}</span>
+                          <span className='text-[16px] font-medium hover:text-primary'>{cat.name}</span>
                         </span>
-                        <span className="text-foreground/60 tabular-nums">
+                        <span className="text-foreground/60 tabular-nums text-[16px] font-medium">
                           ({cat.count})
                         </span>
                       </button>
@@ -127,9 +127,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
 
             {/* 3. Sale Sidebar */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
-              <h3 className="text-[17px] text-foreground mb-5">
+              <h4 className=" text-foreground mb-5">
                 Sale
-              </h3>
+              </h4>
 
               <div className="space-y-6">
                 {SALE_SIDEBAR_PRODUCTS.map((saleItem) => (
@@ -141,7 +141,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                     {/* Image Container with % SALE badge */}
                     <div className="relative w-full h-[185px] sm:h-[195px] bg-[#F7F3F0] rounded-xs flex items-center justify-center p-4 overflow-hidden group-hover:bg-[#F3F0EA] transition-colors">
                       <div className="absolute top-2.5 left-2.5 z-10">
-                        <span className="bg-foreground text-white px-2.5 py-0.5 rounded-full shadow-xs">
+                        <span className="bg-foreground text-xs text-white px-3 font-semibold py-2 rounded-full shadow-xs">
                           % SALE
                         </span>
                       </div>
@@ -255,7 +255,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                       {/* Optional % SALE badge */}
                       {product.isSale && (
                         <div className="absolute top-3 left-3 z-10">
-                          <span className="bg-foreground text-white px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-xs">
+                          <span className="bg-foreground text-xs text-white px-3 font-semibold py-2 rounded-full shadow-xs">
                             % SALE
                           </span>
                         </div>

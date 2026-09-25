@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Star, ChevronUp, ChevronDown, Check } from 'lucide-react';
 import { Product, ALL_PRODUCTS } from '../data/honeyData';
 
@@ -28,9 +28,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<'description' | 'reviews'>('description');
-  
-  // Banner state: matches "Product details page - added to cart.png"
-  const [showAddedBanner, setShowAddedBanner] = useState(true);
+  const [showAddedBanner, setShowAddedBanner] = useState(false);
   const [bannerProductTitle, setBannerProductTitle] = useState(product.title);
 
   // Reviews state
@@ -44,6 +42,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
   // 4 related products
   const relatedProducts = ALL_PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
+
+  useEffect(() => {
+    setQuantity(1);
+    setShowAddedBanner(false);
+    setBannerProductTitle(product.title);
+  }, [product.id, product.title]);
 
   const handleAdd = () => {
     onAddToCart(product, quantity);
@@ -128,7 +132,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 src={product.image}
                 alt={product.title}
                 referrerPolicy="no-referrer"
-                className="max-h-[380px] w-auto object-contain filter drop-shadow-sm transition-transform duration-500 hover:scale-105"
+                className=" w-[400px] h-auto object-contain filter drop-shadow-sm transition-transform duration-500 hover:scale-105"
               />
             </div>
           </div>
@@ -142,16 +146,16 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             </span>
 
             {/* Title in bold Space Mono */}
-            <h1 className="lg:text-[34px] text-foreground mt-2">
+            <h3 className=" text-foreground mt-2">
               {product.title}
-            </h1>
+            </h3>
 
             {/* Price line with + Besplatna dostava */}
             <div className="mt-4 flex items-baseline gap-3">
-              <span className="sm:text-[26px] text-foreground tabular-nums">
+              <h5 className="sm:text- text-foreground tabular-nums">
                 {product.price.toFixed(2)} EUR
-              </span>
-              <span className="text-foreground/60">
+              </h5>
+              <span className="text-foreground/60 text-sm">
                 + Besplatna dostava
               </span>
             </div>
@@ -211,7 +215,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               <span>Kategorija: </span>
               <button 
                 onClick={onNavigateShop}
-                className="text-neutral-700 hover:text-amber-900 transition-colors underline-offset-2 hover:underline cursor-pointer"
+                className="text-sm font-[400] hover:text-primary transition-colors underline-offset-2 hover:underline cursor-pointer"
               >
                 {product.category}
               </button>
@@ -285,7 +289,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             <div className="pt-6">
               
               {reviews.length === 0 ? (
-                <p className="text-[13.5px] text-foreground mb-6">
+                <p className=" text-primary-foreground mb-6">
                   Još nema recenzija.
                 </p>
               ) : (
@@ -322,9 +326,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </div>
                 )}
 
-                <h3 className="sm:text-[17px] text-foreground">
+                <h5 >
                   Budi prvi/a i ostavi recenziju za &ldquo;{product.category || product.title}&rdquo;
-                </h3>
+                </h5>
 
                 <p className="mt-1.5 text-foreground/60">
                   Tvoja email adresa neće biti podijeljena.
@@ -332,7 +336,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
                 <form onSubmit={handleSubmitReview} className="mt-5 space-y-5">
                   <div className="flex items-center gap-3">
-                    <span className="text-foreground">
+                    <span className="text-foreground font-semibold">
                       Tvoja ocijena*
                     </span>
                     <div className="flex items-center gap-1">
@@ -345,7 +349,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                             onClick={() => setRating(star)}
                             onMouseEnter={() => setHoverRating(star)}
                             onMouseLeave={() => setHoverRating(0)}
-                            className="p-0.5 focus:outline-none transition-transform hover:scale-110"
+                            className="p-0.5 font-semibold focus:outline-none transition-transform hover:scale-110"
                             aria-label={`Ocijeni s ${star} zvjezdica`}
                           >
                             <Star
@@ -362,7 +366,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-foreground mb-1.5">
+                    <label className="block text-foreground mb-1.5 font-semibold">
                       Tvoja recenzija*
                     </label>
                     <textarea
@@ -376,7 +380,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-primary-foreground mb-1.5 text-sm font-semibold">
                         Ime*
                       </label>
                       <input
@@ -389,7 +393,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-primary-foreground mb-1.5 text-sm font-semibold">
                         Email*
                       </label>
                       <input
@@ -405,7 +409,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="bg-[#1C1F20] hover:bg-neutral-800 text-white uppercase py-2.5 px-7 rounded-xs transition-colors cursor-pointer"
+                      className="bg-[#1C1F20] hover:bg-neutral-800 text-white tracking-[1px] text-md py-2.5 px-7 rounded-xs transition-colors cursor-pointer"
                     >
                       Potvrdi
                     </button>
@@ -423,7 +427,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         {/* POVEZANI PROIZVODI SECTION                                */}
         {/* ========================================================== */}
         <div className="mt-20 sm:mt-24">
-          <h2 className="text-foreground mb-8">
+          <h2 className="text-foreground mb-8 tracking-[2px] ">
             Povezani proizvodi
           </h2>
 
@@ -462,18 +466,19 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
                 {/* Metadata Below Image */}
                 <div className="pt-3.5 flex flex-col">
-                  <span className="text-[11.5px] text-foreground/60">
+                  <span className="text-[14px] text-[#646772]">
                     {relProduct.category}
                   </span>
 
-                  <h3 className="text-[14.5px] text-foreground mt-0.5 group-hover:text-amber-900 transition-colors">
+                  <h3 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
                     {relProduct.title}
                   </h3>
 
                   {/* 5 Rating Stars */}
                   <div className="flex items-center gap-0.5 mt-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-[#E5A83B]" />
+                      // <Star key={i} className="w-3.5 h-3.5 fill-[#E5A83B]" />
+                      <img alt="star" src="../img/single-star.svg"></img>
                     ))}
                   </div>
 

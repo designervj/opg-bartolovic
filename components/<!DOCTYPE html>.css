@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoices - Hotel Grand Eagle</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet">
+        <!-- FontAwesome Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <style>
+            :root {
+                /* Black, Charcoal & Light Grey Palette */
+                --brand-primary: #111111;
+                --brand-secondary: #222222;
+                --brand-accent: #444444;
+                --brand-light: #f8f9fa;
+                --brand-border: #cccccc;
+                --brand-text-dark: #111111;
+                --brand-text-muted: #555555;
+                --bg-dark-gradient: linear-gradient(135deg, #121212 0%, #242424 100%);
+                --transition-speed: 0.2s;
+            }
+
+            /* Sharp corner reset */
+            * {
+                border-radius: 0 !important;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                padding: 0;
+                background: var(--bg-dark-gradient);
+                min-height: 100vh;
+                color: #ffffff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Interactive Dashboard Controller */
+            .dashboard-header {
+                width: 100%;
+                max-width: 900px;
+                margin: 25px auto 10px auto;
+                padding: 12px 20px;
+                background: rgba(20, 20, 20, 0.85);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+                z-index: 10;
+            }
+
+            .dashboard-brand {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .dashboard-brand i {
+                font-size: 20px;
+                color: #ffffff;
+            }
+
+            .dashboard-brand h2 {
+                margin: 0;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: #ffffff;
+            }
+
+            .controls-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .gst-toggle-container {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: #2a2a2a;
+                padding: 8px 12px;
+                border: 1px solid #444444;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .gst-toggle-container input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+                accent-color: #ffffff;
+            }
+
+            .gst-toggle-container label {
+                font-size: 12px;
+                font-weight: 600;
+                color: #ffffff;
+                cursor: pointer;
+                letter-spacing: 0.5px;
+            }
+
+            .invoice-select {
+                background: #ffffff;
+                color: #111111;
+                border: 1px solid #ffffff;
+                padding: 8px 12px;
+                font-size: 12px;
+                font-weight: 600;
+                cursor: pointer;
+                outline: none;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .action-btn {
+                background: #ffffff;
+                color: #111111;
+                border: 1px solid #ffffff;
+                padding: 8px 16px;
+                font-size: 12px;
+                font-weight: 700;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                transition: all var(--transition-speed) ease;
+            }
+
+            .action-btn:hover {
+                background: #dddddd;
+                border-color: #dddddd;
+            }
+
+            /* Invoice Container */
+            .invoice-wrapper {
+                width: 100%;
+                max-width: 900px;
+                margin: 15px auto 40px auto;
+                position: relative;
+            }
+
+            .invoice-box {
+                width: 100%;
+                background: #ffffff;
+                padding: 0 0 140px 0;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+                position: relative;
+                overflow: hidden;
+                animation: fadeIn 0.3s ease-in-out forwards;
+                color: var(--brand-text-dark);
+                border-top: 6px solid var(--brand-primary);
+                min-height: 1050px;
+                box-sizing: border-box;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(6px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Watermark */
+            .watermark {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 0.03;
+                pointer-events: none;
+                z-index: 0;
+            }
+
+            .watermark img {
+                width: 380px;
+                filter: grayscale(100%);
+            }
+
+            /* Header Layout */
+            .invoice-header {
+                background-color: var(--brand-primary);
+                color: #ffffff;
+                border-bottom: 2px solid #333333;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 24px 40px;
+                margin: 0;
+                z-index: 1;
+                position: relative;
+            }
+
+            .invoice-header img {
+                max-height: 70px;
+                width: auto;
+                object-fit: contain;
+                filter: brightness(0) invert(1);
+            }
+
+            .invoice-body {
+                padding: 25px 40px 0 40px;
+                box-sizing: border-box;
+            }
+
+            .hotel-meta-details {
+                text-align: right;
+                font-size: 11px;
+                line-height: 1.5;
+                color: #cccccc;
+            }
+
+            .hotel-meta-details p {
+                margin: 2px 0;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 25px;
+                padding: 8px 0;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                z-index: 1;
+                position: relative;
+                color: var(--brand-primary);
+                border-bottom: 2px solid var(--brand-primary);
+            }
+
+            /* Information Table */
+            .info-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 25px;
+                font-size: 12px;
+                z-index: 1;
+                position: relative;
+            }
+
+            .info-table td {
+                padding: 8px 12px;
+                vertical-align: top;
+                width: 50%;
+            }
+
+            .details-grid {
+                display: grid;
+                grid-template-columns: 110px 1fr;
+                gap: 6px;
+            }
+
+            .details-grid strong {
+                font-weight: 600;
+                color: #222222;
+            }
+
+            /* Main Items Table */
+            .items-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 25px;
+                font-size: 12px;
+                z-index: 1;
+                position: relative;
+            }
+
+            .items-table th,
+            .items-table td {
+                padding: 10px 12px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .items-table th {
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                font-size: 11px;
+                border-top: 2px solid var(--brand-primary);
+                border-bottom: 2px solid var(--brand-primary);
+                color: #ffffff;
+                background-color: var(--brand-primary);
+            }
+
+            .amount-col {
+                text-align: right;
+                white-space: nowrap;
+            }
+
+            .center-col {
+                text-align: center;
+            }
+
+            /* Totals Block */
+            .totals-section {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 25px;
+                z-index: 1;
+                position: relative;
+            }
+
+            .totals-box {
+                width: 320px;
+                padding: 15px;
+                border: 2px solid var(--brand-primary);
+                background-color: var(--brand-light);
+            }
+
+            .totals-table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 12px;
+            }
+
+            .totals-table td {
+                padding: 5px 0;
+                color: #333333;
+            }
+
+            .net-payable {
+                font-weight: 700;
+                font-size: 15px;
+                border-top: 2px solid var(--brand-primary);
+                color: var(--brand-primary);
+            }
+
+            /* Footer Notes and Signature */
+            .footer-note-section {
+                display: flex;
+                justify-content: space-between;
+                font-size: 11px;
+                color: var(--brand-text-muted);
+                z-index: 1;
+                line-height: 1.5;
+                position: absolute;
+                bottom: 40px;
+                left: 40px;
+                right: 40px;
+            }
+
+            .footer-note-section p {
+                margin: 3px 0;
+            }
+
+            .signature-block {
+                text-align: center;
+                width: 200px;
+                border-top: 1px dashed #333333;
+                padding-top: 8px;
+                margin-top: 45px;
+                color: var(--brand-primary);
+            }
+
+            /* Print and PDF generation styles */
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            @media print {
+                body {
+                    background: #ffffff !important;
+                    color: #000000 !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    width: 100% !important;
+                }
+
+                .no-print,
+                .dashboard-header {
+                    display: none !important;
+                }
+
+                .invoice-wrapper {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                    box-sizing: border-box !important;
+                    page-break-inside: avoid !important;
+                }
+
+                .invoice-box {
+                    box-shadow: none !important;
+                    border-left: none !important;
+                    border-right: none !important;
+                    border-top: 6px solid var(--brand-primary) !important;
+                    padding: 0 0 120px 0 !important;
+                    margin: 0 !important;
+                    width: 100% !important;
+                    box-sizing: border-box !important;
+                    float: none !important;
+                    background: transparent !important;
+                    position: relative !important;
+                    page-break-inside: avoid !important;
+                    min-height: 270mm !important;
+                    height: 270mm !important;
+                }
+
+                .invoice-header {
+                    margin: 0 !important;
+                    padding: 20px 40px !important;
+                    background-color: #111111 !important;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+
+                .items-table th {
+                    background-color: #111111 !important;
+                    color: #ffffff !important;
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+
+                .invoice-body {
+                    padding: 25px 40px 0 40px !important;
+                }
+
+                .footer-note-section {
+                    position: absolute !important;
+                    bottom: 25px !important;
+                    left: 40px !important;
+                    right: 40px !important;
+                }
+
+                * {
+                    -webkit-print-color-adjust: exact !important;
+                    print-color-adjust: exact !important;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Interactive Control Bar -->
+        <div class="dashboard-header no-print">
+            <div class="dashboard-brand">
+                <i class="fa-solid fa-hotel"></i>
+                <h2>Hotel Grand Eagle</h2>
+            </div>
+
+            <div class="controls-wrapper">
+                <div class="gst-toggle-container">
+                    <input type="checkbox" id="gstCheckbox" onchange="toggleGst(this.checked)" checked>
+                    <label for="gstCheckbox">Apply GST</label>
+                </div>
+
+                <select id="invoiceDropdown" class="invoice-select" onchange="changeInvoice(this.value)">
+                    <option value="1">Invoice #1 - Satendra, Mumma, Arshad</option>
+                </select>
+
+                <button class="action-btn" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Print / Export
+                </button>
+            </div>
+        </div>
+
+        <!-- MAIN INVOICE CONTAINER -->
+        <div class="invoice-wrapper">
+            <div id="invoice-container" class="invoice-box">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+        </div>
+
+        <script>
+            const hotelDetails = {
+                name: "HOTEL GRAND EAGLE",
+                regdName: "(Regd Name: GRAND EAGLE GROUP)",
+                gstin: "08ABCFG0357K1ZD",
+                address: "C-50, Commercial Complex Sitapura Industrial Area Tonk Road, Jaipur, Rajasthan, 302022",
+                email: "hotelgrandeagle@gmail.com",
+                phone: "6367850548, 8854970548",
+                logoUrl: "https://hotelgrandeagle.in/logo.png"
+            };
+
+            const invoicesData = {
+                "1": {
+                    billNo: "HGE-2026-001",
+                    billDate: "25/09/2026",
+                    companyName: "",
+                    guestName: "Satendra, Mumma, Arshad",
+                    guestGstin: "",
+                    address: "",
+                    roomNo: "N/A",
+                    pax: "3 Guests",
+                    checkIn: "24/09/2026",
+                    checkOut: "25/09/2026",
+                    stayDuration: "1 Day",
+                    dateRange: "24/09/2026 To 25/09/2026",
+                    baseRoom: 1000.00,
+                    defaultGst: true,
+                    gstRate: 5,
+                    foodCharges: 0.00,
+                    foodItems: []
+                }
+            };
+
+            let currentInvoiceId = "1";
+            let isGstApplied = true;
+
+            function formatCurrency(num) {
+                return '₹ ' + Math.round(num).toLocaleString('en-IN') + '.00';
+            }
+
+            function numberToWords(num) {
+                const a = ['', 'One ', 'Two ', 'Three ', 'Four ', 'Five ', 'Six ', 'Seven ', 'Eight ', 'Nine ', 'Ten ', 'Eleven ', 'Twelve ', 'Thirteen ', 'Fourteen ', 'Fifteen ', 'Sixteen ', 'Seventeen ', 'Eighteen ', 'Nineteen '];
+                const b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+                function inWords(n) {
+                    if ((n = n.toString()).length > 9) return 'overflow';
+                    let n_array = ('000000000' + n).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                    if (!n_array) return '';
+                    let str = '';
+                    str += (n_array[1] != 0) ? (a[Number(n_array[1])] || b[n_array[1][0]] + ' ' + a[n_array[1][1]]) + 'Crore ' : '';
+                    str += (n_array[2] != 0) ? (a[Number(n_array[2])] || b[n_array[2][0]] + ' ' + a[n_array[2][1]]) + 'Lakh ' : '';
+                    str += (n_array[3] != 0) ? (a[Number(n_array[3])] || b[n_array[3][0]] + ' ' + a[n_array[3][1]]) + 'Thousand ' : '';
+                    str += (n_array[4] != 0) ? (a[Number(n_array[4])] || b[n_array[4][0]] + ' ' + a[n_array[4][1]]) + 'Hundred ' : '';
+                    str += (n_array[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n_array[5])] || b[n_array[5][0]] + ' ' + a[n_array[5][1]]) : '';
+                    return str;
+                }
+
+                return inWords(Math.round(num)).trim() + ' Only';
+            }
+
+            function changeInvoice(id) {
+                currentInvoiceId = id;
+                const data = invoicesData[id];
+                isGstApplied = data.defaultGst;
+                document.getElementById('gstCheckbox').checked = isGstApplied;
+                renderInvoice();
+            }
+
+            function toggleGst(checked) {
+                isGstApplied = checked;
+                renderInvoice();
+            }
+
+            function renderInvoice() {
+                const data = invoicesData[currentInvoiceId];
+
+                // Calculate GST
+                const gstRate = isGstApplied ? (data.gstRate || 5) : 0;
+                const totalGst = (data.baseRoom * gstRate) / 100;
+                const cgst = totalGst / 2;
+                const sgst = totalGst / 2;
+                const grandTotal = data.baseRoom + totalGst + data.foodCharges;
+
+                // Header GST details display
+                const hotelGstHeader = isGstApplied
+                    ? `<p style="margin-top: 4px; font-weight: 600; color: #ffffff;">GSTIN: ${hotelDetails.gstin}</p>`
+                    : '';
+
+                // Guest Details Section
+                const guestGstDetails = isGstApplied && data.guestGstin
+                    ? `<br><strong>State:</strong> Rajasthan (08)<br><span style="font-weight: 600; color: #111111;">GSTIN: ${data.guestGstin}</span>`
+                    : (isGstApplied ? `<br><strong>State:</strong> Rajasthan (08)<br><span style="font-weight: 600; color: #64748b;">GSTIN: N/A</span>` : '');
+
+                // Billed To Display Construction
+                const billedToName = data.companyName ? data.companyName : data.guestName;
+                const guestSubDetails = data.companyName 
+                    ? `<div style="margin-top: 2px; color: #555555; font-size: 11px;"><strong>Guests:</strong> ${data.guestName}</div>` 
+                    : '';
+                const addressDetails = data.address 
+                    ? `<div style="margin-top: 2px; color: #555555; font-size: 11px;"><strong>Address:</strong> ${data.address}</div>` 
+                    : '';
+
+                // Table Header Construction
+                let tableHeaderHtml = `
+                <tr>
+                    <th style="width: 20%; text-align: center;">Stay Period</th>
+                    <th style="text-align: left; width: ${isGstApplied ? '30%' : '50%'};">Description</th>
+                    <th class="amount-col" style="width: 15%;">Base Rate</th>
+            `;
+
+                if (isGstApplied) {
+                    tableHeaderHtml += `
+                    <th class="amount-col" style="width: 12.5%;">CGST (2.5%)</th>
+                    <th class="amount-col" style="width: 12.5%;">SGST (2.5%)</th>
+                `;
+                }
+
+                tableHeaderHtml += `<th class="amount-col" style="width: 15%;">Total</th></tr>`;
+
+                // Table Rows Construction
+                let tableBodyHtml = `
+                <tr>
+                    <td class="center-col" style="vertical-align: top;">${data.dateRange}</td>
+                    <td style="vertical-align: top;">
+                        <strong>Room Rent${data.roomNo !== 'N/A' ? ' - Room ' + data.roomNo : ''}</strong><br>
+                        <span style="font-size: 10px; color: #666666;">Duration: ${data.stayDuration}</span>
+                    </td>
+                    <td class="amount-col" style="vertical-align: top;">${formatCurrency(data.baseRoom)}</td>
+            `;
+
+                if (isGstApplied) {
+                    tableBodyHtml += `
+                    <td class="amount-col" style="vertical-align: top;">${formatCurrency(cgst)}</td>
+                    <td class="amount-col" style="vertical-align: top;">${formatCurrency(sgst)}</td>
+                `;
+                }
+
+                tableBodyHtml += `
+                <td class="amount-col" style="vertical-align: top;"><strong>${formatCurrency(data.baseRoom + totalGst)}</strong></td>
+                </tr>
+            `;
+
+                // Food Items Rows
+                data.foodItems.forEach(item => {
+                    tableBodyHtml += `
+                    <tr>
+                        <td class="center-col" style="vertical-align: top;">-</td>
+                        <td style="vertical-align: top;"><strong>${item.description}</strong></td>
+                        <td class="amount-col" style="vertical-align: top;">${formatCurrency(item.amount)}</td>
+                `;
+
+                    if (isGstApplied) {
+                        tableBodyHtml += `
+                        <td class="amount-col" style="vertical-align: top;">₹ 0.00</td>
+                        <td class="amount-col" style="vertical-align: top;">₹ 0.00</td>
+                    `;
+                    }
+
+                    tableBodyHtml += `
+                        <td class="amount-col" style="vertical-align: top;"><strong>${formatCurrency(item.amount)}</strong></td>
+                    </tr>
+                `;
+                });
+
+                // Totals Box Rows
+                let totalsTableHtml = `
+                <tr>
+                    <td style="color: #555555;">Total Room Rent:</td>
+                    <td class="amount-col" style="font-weight: 500;">${formatCurrency(data.baseRoom)}</td>
+                </tr>
+            `;
+
+                if (isGstApplied) {
+                    totalsTableHtml += `
+                    <tr>
+                        <td style="color: #555555;">CGST (2.5%):</td>
+                        <td class="amount-col" style="font-weight: 500;">${formatCurrency(cgst)}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #555555;">SGST (2.5%):</td>
+                        <td class="amount-col" style="font-weight: 500;">${formatCurrency(sgst)}</td>
+                    </tr>
+                `;
+                }
+
+                if (data.foodCharges > 0) {
+                    totalsTableHtml += `
+                    <tr>
+                        <td style="color: #555555;">Food & Extra Bill:</td>
+                        <td class="amount-col" style="font-weight: 500;">${formatCurrency(data.foodCharges)}</td>
+                    </tr>
+                `;
+                }
+
+                totalsTableHtml += `
+                <tr class="net-payable">
+                    <td style="padding-top: 8px; font-weight: 700;">Net Payable:</td>
+                    <td class="amount-col" style="padding-top: 8px; font-weight: 700;">${formatCurrency(grandTotal)}</td>
+                </tr>
+            `;
+
+                const docTitleHtml = isGstApplied ? "TAX INVOICE" : "GUEST BILL";
+
+                const html = `
+                <!-- Watermark -->
+                <div class="watermark">
+                    <img src="${hotelDetails.logoUrl}" alt="Watermark" onerror="this.style.display='none'">
+                </div>
+
+                <!-- Header -->
+                <div class="invoice-header">
+                    <img src="${hotelDetails.logoUrl}" alt="Hotel Logo" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x60/111111/ffffff?text=GRAND+EAGLE';">
+                    <div class="hotel-meta-details">
+                        <p style="font-weight: 700; color: #ffffff; font-size: 14px; margin-bottom: 2px;">${hotelDetails.name}</p>
+                        <p style="font-size: 10px; color: #aaaaaa; margin-bottom: 4px;">${hotelDetails.regdName}</p>
+                        <p>${hotelDetails.address}</p>
+                        <p>Ph: ${hotelDetails.phone} &nbsp;|&nbsp; Email: ${hotelDetails.email}</p>
+                        ${hotelGstHeader}
+                    </div>
+                </div>
+
+                <!-- Invoice Body Content -->
+                <div class="invoice-body">
+                    <div class="section-title">${docTitleHtml}</div>
+
+                    <!-- Stay and Bill Details -->
+                    <table class="info-table">
+                        <tr>
+                            <td style="border-right: 1px solid #e5e5e5; padding-right: 25px;">
+                                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #666666; font-weight: 600;">Billed To (Guest Details)</span><br>
+                                <div style="margin-top: 6px; font-size: 14px; font-weight: 700; color: var(--brand-primary);">${billedToName}</div>
+                                ${guestSubDetails}
+                                ${addressDetails}
+                                <div style="margin-top: 4px; color: #444444; font-size: 12px; line-height: 1.4;">
+                                    Nationality: Indian
+                                    ${guestGstDetails}
+                                </div>
+                            </td>
+                            <td style="padding-left: 25px;">
+                                <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #666666; font-weight: 600;">Document Details</span><br>
+                                <div class="details-grid" style="margin-top: 6px;">
+                                    <strong>Bill No:</strong> <span>${data.billNo}</span>
+                                    <strong>Bill Date:</strong> <span>${data.billDate}</span>
+                                    <strong>Room No:</strong> <span>${data.roomNo}</span>
+                                    <strong>Check In:</strong> <span>${data.checkIn}</span>
+                                    <strong>Check Out:</strong> <span>${data.checkOut}</span>
+                                    <strong>No. of Pax:</strong> <span>${data.pax}</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Items Table -->
+                    <table class="items-table">
+                        <thead>
+                            ${tableHeaderHtml}
+                        </thead>
+                        <tbody>
+                            ${tableBodyHtml}
+                        </tbody>
+                    </table>
+
+                    <!-- Calculations Totals Box -->
+                    <div class="totals-section">
+                        <div class="totals-box">
+                            <table class="totals-table">
+                                ${totalsTableHtml}
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="font-size: 12px; margin-bottom: 25px;">
+                        <strong style="color: var(--brand-primary);">Amount in Words:</strong> Rupees ${numberToWords(grandTotal)}.
+                    </div>
+
+                    <!-- Footer Notes and Signature -->
+                    <div class="footer-note-section">
+                        <div style="width: 480px;">
+                            <p><strong style="color: var(--brand-primary); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Terms & Conditions</strong></p>
+                            <ul style="padding-left: 15px; margin-top: 4px; color: #555555;">
+                                <li>All disputes are subject to Jaipur Jurisdiction.</li>
+                                <li>E. & O.E.</li>
+                                <li>This is a computer-generated invoice.</li>
+                            </ul>
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-end;">
+                            <div class="signature-block">
+                                Admin / Authorized Signatory<br>
+                                <strong style="font-weight: 700;">For Hotel Grand Eagle</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+                document.getElementById('invoice-container').innerHTML = html;
+            }
+
+            // Initialize application
+            window.onload = function () {
+                renderInvoice();
+            };
+        </script>
+    </body>
+
+</html>

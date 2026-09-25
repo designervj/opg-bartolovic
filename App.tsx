@@ -120,7 +120,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleAddToCart = (product: Product, quantity: number = 1) => {
+  const handleAddToCart = (product: Product, quantity: number = 1, showSuccessToast = true) => {
     setCart((prevCart) => {
       const existing = prevCart.find((it) => it.product.id === product.id);
       if (existing) {
@@ -132,7 +132,9 @@ export default function App() {
       }
       return [...prevCart, { product, quantity }];
     });
-    showToast(`"${product.title}" dodan u košaricu`);
+    if (showSuccessToast) {
+      showToast(`"${product.title}" dodan u košaricu`);
+    }
   };
 
   const handleUpdateQuantity = (productId: string, delta: number) => {
@@ -269,7 +271,7 @@ export default function App() {
           /* ======================================================= */
           <ProductDetailPage
             product={selectedProduct}
-            onAddToCart={handleAddToCart}
+            onAddToCart={(product, quantity) => handleAddToCart(product, quantity, false)}
             onSelectProduct={handleOpenProductDetail}
             onNavigateShop={handleNavigateToShop}
             onNavigateCart={handleNavigateToCart}

@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNav('home')}
             className="cursor-pointer flex-shrink-0"
           >
-            <img src="../img/logo.svg" alt="logo" className="h-10 w-auto" />
+            <img src="../img/logo.svg" alt="logo" className="h-12 w-auto" />
           </div>
 
           {/* Center Navigation Links — Desktop only */}

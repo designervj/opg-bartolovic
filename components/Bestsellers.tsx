@@ -102,9 +102,9 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
               </span>
 
               {/* Title */}
-              <h3 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+              <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
                 {product.title}
-              </h3>
+              </h6>
 
               {/* 5 Rating Stars in Amber */}
               <div className="flex items-center gap-0.5 mt-1">

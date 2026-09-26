@@ -56,9 +56,9 @@ export const CartPage: React.FC<CartPageProps> = ({
         <div className="bg-background p-6 sm:p-10 lg:p-14 shadow-xs rounded-xs">
           
           {/* Main Title matching Cart.png and Cart (1).png */}
-          <h1 className="lg:text-[34px] text-foreground mb-8">
+          <h4 className="lg:text-[24px] text-foreground mb-8">
             Košarica
-          </h1>
+          </h4>
 
           {/* ======================================================== */}
           {/* EMPTY CART STATE (Matches "Cart (1).png")                 */}
@@ -97,10 +97,10 @@ export const CartPage: React.FC<CartPageProps> = ({
                   {/* Table Header Row */}
                   <div className="bg-background border-b border-border px-4 py-3.5 grid grid-cols-12 text-foreground">
                     <div className="col-span-1"></div>
-                    <div className="col-span-5 text-left">Proizvod</div>
-                    <div className="col-span-2 text-center">Cijena</div>
-                    <div className="col-span-2 text-center">Količina</div>
-                    <div className="col-span-2 text-right">Iznos</div>
+                    <div className="col-span-5 text-left text-[14px] font-semibold">Proizvod</div>
+                    <div className="col-span-2 text-center text-[14px] font-semibold">Cijena</div>
+                    <div className="col-span-2 text-center text-[14px] font-semibold">Količina</div>
+                    <div className="col-span-2 text-right text-[14px] font-semibold">Iznos</div>
                   </div>
 
                   {/* Cart Items Rows */}
@@ -136,7 +136,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                             <span className="text-foreground">
                               {product.title}
                             </span>
-                            <span className="text-[11.5px] text-foreground/60 mt-0.5">
+                            <span className="text-[14px] text-foreground/60 mt-0.5">
                               {product.weight}
                             </span>
                           </div>
@@ -195,7 +195,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                       />
                       <button
                         type="submit"
-                        className="border border-neutral-900 bg-background hover:bg-foreground text-foreground hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer shrink-0"
+                        className="border border-neutral-900 bg-background hover:bg-foreground text-foreground hover:text-white px-6 py-2.5 uppercase transition-colors duration-200 cursor-pointer shrink-0"
                       >
                         Primjeni
                       </button>
@@ -206,7 +206,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                       type="button"
                       onClick={handleUpdateCart}
                       disabled={isUpdating}
-                      className="w-full sm:w-auto border border-border bg-background text-foreground/40 hover:text-neutral-700 hover:border-neutral-400 px-6 py-2 uppercase transition-colors duration-200 cursor-pointer shrink-0"
+                      className="w-full sm:w-auto border border-border bg-background text-foreground/40 hover:text-neutral-700 hover:border-neutral-400 px-6 py-2.5 uppercase transition-colors duration-200 cursor-pointer shrink-0"
                     >
                       {isUpdating ? 'Ažuriranje...' : 'Ažuriraj košaricu'}
                     </button>
@@ -231,9 +231,9 @@ export const CartPage: React.FC<CartPageProps> = ({
                   
                   {/* Header */}
                   <div className="bg-background border-b border-border p-4">
-                    <h2 className="text-[14.5px] text-foreground">
+                    <h6 className="text-[14.5px] text-foreground">
                       Ukupan iznos košarice
-                    </h2>
+                    </h6>
                   </div>
 
                   {/* Body */}

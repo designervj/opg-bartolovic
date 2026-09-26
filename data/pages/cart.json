@@ -1,0 +1,26 @@
+{
+  "name": "cart",
+  "title": "Košarica",
+  "emptyState": {
+    "message": "Tvoja košarica je trenutno prazna.",
+    "buttonText": "Natrag na shop"
+  },
+  "cartTable": {
+    "headers": {
+      "product": "Proizvod",
+      "price": "Cijena",
+      "quantity": "Količina",
+      "total": "Iznos"
+    },
+    "couponPlaceholder": "Kupon kod",
+    "applyCouponButton": "Primjeni",
+    "updateCartButton": "Ažuriraj košaricu"
+  },
+  "summary": {
+    "title": "Ukupan iznos košarice",
+    "subtotalLabel": "Iznos košarice",
+    "discountLabel": "Popust (10%)",
+    "totalLabel": "Ukupno",
+    "checkoutButtonText": "Nastavi na plaćanje"
+  }
+}

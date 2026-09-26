@@ -18,9 +18,9 @@ export const FeatureCards: React.FC = () => {
             </div>
 
             {/* Title */}
-            <h3 className="text-md  font-bold text-foreground mb-2">
+            <h6 className="text-[16px]  font-bold text-foreground mb-2">
               {item.title}
-            </h3>
+            </h6>
 
             {/* Description */}
             <p className="text-primary-foreground font-sm">

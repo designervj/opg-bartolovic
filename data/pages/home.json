@@ -1,0 +1,113 @@
+{
+  "name": "home",
+  "title": "Naslovna",
+  "hero": {
+    "title": "100% Prirodni Slavonski Med Direct iz Košnice",
+    "subtitle": "Okusite tradiciju i čistoću prirode. Naš med sakupljen je s ljubavlju i pažnjom na livadama i šumama Slavonije.",
+    "buttonText": "Istražite proizvode",
+    "bgImage": "../img/hero-bg.png"
+  },
+  "featureCards": [
+    {
+      "id": "prirodno",
+      "iconType": "../img/service-Icon.svg",
+      "title": "100% prirodni proizvodi",
+      "description": "Bez aditiva, bez industrijske obrade – samo čisti darovi prirode ručno pakirani."
+    },
+    {
+      "id": "kosnice",
+      "iconType": "../img/service-Icon-1.svg",
+      "title": "Med iz vlastitih košnica",
+      "description": "Brinemo o 150 košnica smještenih u slavonskoj prirodi, daleko od zagađenja."
+    },
+    {
+      "id": "oznaka",
+      "iconType": "../img/service-Icon-2.svg",
+      "title": "Nacionalna oznaka kvalitete",
+      "description": "Naš med nosi oznaku \"Med hrvatskih pčelinjaka\" – dokaz porijekla i vrhunske kvalitete."
+    },
+    {
+      "id": "tradicija",
+      "iconType": "../img/service-Icon-3.svg",
+      "title": "Obiteljska tradicija",
+      "description": "Generacijama njegujemo znanje, iskustvo i poštovanje prema pčelama i prirodi."
+    }
+  ],
+  "categoriesGrid": {
+    "title": "Naše Kategorije",
+    "subtitle": "Pregledajte našu ponudu domaće i prirodne pčelinje ponude",
+    "categories": [
+      {
+        "id": "bagrem",
+        "title": "Med od bagrema",
+        "image": "../img/Frame 9.png"
+      },
+      {
+        "id": "lipa",
+        "title": "Med od lipe",
+        "image": "../img/Frame 6.png"
+      },
+      {
+        "id": "cvjetni",
+        "title": "Cvijetni med",
+        "image": "../img/Frame 10.png"
+      },
+      {
+        "id": "livadni",
+        "title": "Livadni med",
+        "image": "../img/Frame 12.png"
+      },
+      {
+        "id": "ostalo",
+        "title": "Ostali proizvodi",
+        "image": "../img/Frame 13.png"
+      }
+    ]
+  },
+  "bestsellers": {
+    "title": "Najprodavaniji proizvodi",
+    "subtitle": "Otkrijte naše najomiljenije vrste meda i pčelinjih proizvoda",
+    "viewAllText": "Prikaži sve proizvode"
+  },
+  "storySection": {
+    "title": "Pčelarstvo OPG Bartolović",
+    "subtitle": "Obiteljska tradicija iz srca Slavonije",
+    "description": [
+      "Smješteni u Valpovu, brinemo o 150 košnica u netaknutoj slavonskoj prirodi. Proizvodimo čist, nepasteriziran med visoke nutritivne vrijednosti.",
+      "S ponosom ističemo nacionalnu staklenku i oznaku 'Med hrvatskih pčelinjaka', što jamči 100% domaće podrijetlo i provjerenu kvalitetu."
+    ],
+    "image": "../img/story-img.png"
+  },
+  "trustBar": [
+    {
+      "id": "dostava",
+      "icon": "../img/feature-icon.svg",
+      "title": "Besplatna dostava",
+      "subtitle": "Za sve narudžbe iznad 30€."
+    },
+    {
+      "id": "podrska",
+      "icon": "../img/feature-icon-1.svg",
+      "title": "Korisnička podrška",
+      "subtitle": "Rado pomažemo prije i nakon kupnje."
+    },
+    {
+      "id": "garancija",
+      "icon": "../img/feature-icon-2.svg",
+      "title": "Garancija kvalitete",
+      "subtitle": "Svi naši proizvodi su 100% prirodni."
+    },
+    {
+      "id": "placanje",
+      "icon": "../img/feature-icon-3.svg",
+      "title": "Sigurno plaćanje",
+      "subtitle": "Brzo, jednostavno i sigurno."
+    }
+  ],
+  "ctaBanner": {
+    "title": "Kušajte Pravi Slavonski Med",
+    "subtitle": "Naručite odmah i ostvarite besplatnu dostavu za narudžbe iznad 30€.",
+    "buttonText": "Naručite odmah",
+    "image": "../img/cta-bg.png"
+  }
+}

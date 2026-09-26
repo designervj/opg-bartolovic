@@ -12,7 +12,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
         src="../img/hero-img.png"
         alt="Domaći med OPG Bartolović"
         referrerPolicy="no-referrer"
-        className="absolute inset-0 w-full h-full object-cover object-center "
+        className="absolute inset-0 w-full h-full object-cover object-center"
       />
 
       {/* Measured Dark & Amber Vignette Scrim */}

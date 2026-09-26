@@ -20,7 +20,7 @@ import { CartDrawer, CartItem } from './components/CartDrawer';
 import { AboutModal } from './components/AboutModal';
 import { ContactModal } from './components/ContactModal';
 import { LegalModal } from './components/LegalModal';
-import { Product, ALL_PRODUCTS } from './data/honeyData';
+import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from './data/honeyData';
 import { Check } from 'lucide-react';
 
 type View = 'home' | 'shop' | 'about' | 'contact' | 'detail' | 'cart' | 'checkout';

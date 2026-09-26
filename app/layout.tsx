@@ -3,15 +3,15 @@ import { Inter, Montserrat } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-inter',
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 const montserrat = Montserrat({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-montserrat',
-  weight: ['400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
@@ -29,13 +29,17 @@ export const metadata: Metadata = {
   },
 };
 
+import ThemeProvider from './ThemeContext';
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="hr">
+    <html lang="hr" className={`${inter.variable} ${montserrat.variable}`}>
       <body
-        className={`${inter.variable} ${montserrat.variable} bg-background text-foreground antialiased `}
+        className={`${inter.className} bg-background text-foreground antialiased `}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

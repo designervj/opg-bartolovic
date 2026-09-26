@@ -1,0 +1,58 @@
+{
+  "name": "about",
+  "title": "O nama",
+  "hero": {
+    "title": "O nama",
+    "subtitle": "Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama.",
+    "bgImage": "../img/about-img.png"
+  },
+  "story": {
+    "title": "OPG Bartolović – s ljubavlju iz Valpova",
+    "paragraphs": [
+      "Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama. Brinemo o 150 košnica koje se nalaze u netaknutoj prirodi oko Valpova. Vjerujemo u održivo pčelarenje, poštujemo prirodu i svaku kap meda proizvodimo s najvećom pažnjom.",
+      "Naš trud prepoznat je i nacionalno – sav naš med pakiran je u nacionalnu staklenku s oznakom “Med hrvatskih pčelinjaka”, jamčeći vam vrhunsku kvalitetu i podrijetlo.",
+      "Birajte lokalno, birajte prirodno. Birajte OPG Bartolović."
+    ],
+    "buttonText": "Istraži naše proizvode",
+    "hexImages": [
+      "../img/Vector.png",
+      "../img/Vector-1.png",
+      "../img/Vector-2.png"
+    ]
+  },
+  "specialties": {
+    "title": "Specijalizirani smo za razne vrste meda i proizvode na bazi meda poput:",
+    "list": [
+      "Bagremovog meda",
+      "Meda sa saćem",
+      "Livadnog i cvijetnog meda",
+      "Imunomeda, propolisa, peludi",
+      "Meda s orasima, sjemenkama i uljem konoplje"
+    ],
+    "image": "../img/about-service.png",
+    "footerText": "Naš cilj je pružiti vam prirodan i zdrav proizvod kojem možete vjerovati – za vaše zdravlje i svakodnevno uživanje."
+  },
+  "team": {
+    "title": "Naš tim",
+    "subtitle": "Naš tim je mala, ali snažna obiteljska zajednica koja dijeli zajedničku strast prema pčelarstvu i očuvanju prirode.",
+    "introText": "Tko smo mi:",
+    "members": [
+      {
+        "name": "Ivo Bartolović",
+        "role": "Glavni pčelar i čuvar tradicije",
+        "image": "../img/team.png"
+      },
+      {
+        "name": "Ana Bartolović",
+        "role": "Zadužena za kontrolu kvalitete i pakiranje",
+        "image": "../img/team-1.png"
+      },
+      {
+        "name": "Marko Bartolović",
+        "role": "Brine o marketingu i dostavi",
+        "image": "../img/team-2.png"
+      }
+    ],
+    "commitmentText": "Svaki član tima osobno je posvećen tome da vam dostavimo najbolje što priroda može ponuditi. Zajedno, s puno rada i još više srca, stvaramo proizvode kojima se ponosimo i koje s radošću dijelimo s vama."
+  }
+}

@@ -29,7 +29,7 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onOrderNow }) => {
           </h2>
 
           {/* Subheading */}
-          <p className="mt-2 text-xs sm:text-sm text-white drop-shadow-sm">
+          <p className="mt-2 font-semibold text-white drop-shadow-sm">
             Prirodno. Kvalitetno. Izravno s našeg pčelinjaka.
           </p>
           <p className="hidden sm:block mt-0.5 text-white/85 max-w-lg drop-shadow-sm">

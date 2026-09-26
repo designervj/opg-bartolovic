@@ -1,0 +1,42 @@
+{
+  "name": "checkout",
+  "title": "Plaćanje / Checkout",
+  "checkoutForm": {
+    "title": "Podaci za dostavu",
+    "fields": {
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "address": "Adresa i kućni broj",
+      "city": "Grad",
+      "postalCode": "Poštanski broj",
+      "phone": "Telefon / Mobitel",
+      "email": "Email adresa",
+      "note": "Napomena uz narudžbu (opcionalno)"
+    },
+    "paymentMethods": [
+      {
+        "id": "cod",
+        "title": "Plaćanje pouzećem",
+        "description": "Platite gotovinom ili karticom prilikom preuzimanja pošiljke."
+      },
+      {
+        "id": "bank",
+        "title": "Izravna bankovna transakcija",
+        "description": "Uplatite iznos izravno na naš račun. Narudžba šaljemo nakon vidljive uplate."
+      }
+    ],
+    "submitButtonText": "Naručite"
+  },
+  "orderSummary": {
+    "title": "Vaša narudžba",
+    "subtotalLabel": "Međuzbroj",
+    "shippingLabel": "Dostava",
+    "shippingValue": "Besplatno",
+    "totalLabel": "Ukupno"
+  },
+  "successMessage": {
+    "title": "Hvala vam na narudžbi!",
+    "subtitle": "Vaša narudžba je uspješno zaprimljena. Poslali smo vam potvrdni email s detaljima.",
+    "buttonText": "Nastavite s kupovinom"
+  }
+}

@@ -9,8 +9,6 @@ export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore }) => {
     <section className="w-full bg-[#F7F2EC] py-16 sm:py-20 lg:py-24 border-y border-border/40">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Column: Narrative Content */}
           <div className="lg:col-span-6 flex flex-col items-start">
             <h2 className="lg:text-[34px] text-foreground">
               OPG Bartolović – s<br className="hidden sm:inline" />
@@ -44,15 +42,12 @@ export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore }) => {
             </div>
           </div>
 
-          {/* Right Column: Hexagonal Honeycomb Image Cluster */}
           <div className="lg:col-span-6 flex justify-center items-center">
-
-            {/* Mobile: 3 hexagons in a row */}
             <div className="flex flex-row justify-center gap-3 lg:hidden w-full py-4">
               {[
-                { src: '../img/Vector.png', alt: 'P\u010delinjak' },
-                { src: '../img/Vector-1.png', alt: 'P\u010dele na sa\u0107u' },
-                { src: '../img/Vector-2.png', alt: 'Sa\u0107e s medom' },
+                { src: '../img/Vector.png', alt: 'Pčelinjak' },
+                { src: '../img/Vector-1.png', alt: 'Pčele na saću' },
+                { src: '../img/Vector-2.png', alt: 'Saće s medom' },
               ].map((img) => (
                 <div key={img.src} className="w-[100px] h-[112px] sm:w-[140px] sm:h-[156px] flex-shrink-0">
                   <div className="w-full h-full overflow-hidden clip-hexagon">
@@ -62,30 +57,24 @@ export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore }) => {
               ))}
             </div>
 
-            {/* Desktop: overlapping absolute cluster */}
             <div className="relative hidden lg:block w-full max-w-[480px] h-[480px] select-none mx-auto">
-              {/* Top Hexagon */}
               <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-[240px] h-[265px] transition-transform duration-500 hover:scale-[1.03] z-10 filter drop-shadow-sm">
                 <div className="w-full h-full overflow-hidden clip-hexagon">
-                  <img src="../img/Vector.png" alt="P\u010delinjak Valpovo OPG Bartolovi\u0107" className="w-full h-full object-cover object-center" />
+                  <img src="../img/Vector.png" alt="Pčelinjak Valpovo OPG Bartolović" className="w-full h-full object-cover object-center" />
                 </div>
               </div>
-              {/* Bottom Left Hexagon */}
               <div className="absolute bottom-0 left-[-3%] w-[240px] h-[265px] transition-transform duration-500 hover:scale-[1.03] z-20 filter drop-shadow-sm">
                 <div className="w-full h-full overflow-hidden clip-hexagon">
-                  <img src="../img/Vector-1.png" alt="P\u010dele na sa\u0107u" className="w-full h-full object-cover object-center" />
+                  <img src="../img/Vector-1.png" alt="Pčele na saću" className="w-full h-full object-cover object-center" />
                 </div>
               </div>
-              {/* Bottom Right Hexagon */}
               <div className="absolute bottom-0 right-[-3%] w-[240px] h-[265px] transition-transform duration-500 hover:scale-[1.03] z-15 filter drop-shadow-sm">
                 <div className="w-full h-full overflow-hidden clip-hexagon">
-                  <img src="../img/Vector-2.png" alt="Svje\u017ee sa\u0107e s medom" className="w-full h-full object-cover object-center" />
+                  <img src="../img/Vector-2.png" alt="Svježe saće s medom" className="w-full h-full object-cover object-center" />
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>

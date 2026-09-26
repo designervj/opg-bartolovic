@@ -7,11 +7,7 @@ interface CategoryGridProps {
 export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) => {
   return (
     <section className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
-      
-      {/* Top Row: 2 Wide Feature Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-5 sm:gap-y-6">
-        
-        {/* Med od bagrema */}
         <div
           onClick={() => onSelectCategory('bagrem')}
           className="group relative h-[240px] sm:h-[280px] lg:h-[300px] overflow-hidden rounded-xs cursor-pointer bg-neutral-100"
@@ -30,7 +26,6 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
           </div>
         </div>
 
-        {/* Med od lipe */}
         <div
           onClick={() => onSelectCategory('lipa')}
           className="group relative h-[240px] sm:h-[280px] lg:h-[300px] overflow-hidden rounded-xs cursor-pointer bg-neutral-100"
@@ -48,13 +43,9 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             </h3>
           </div>
         </div>
-
       </div>
 
-      {/* Bottom Row: 3 Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
-        
-        {/* Cvijetni med */}
         <div
           onClick={() => onSelectCategory('cvjetni')}
           className="group relative h-[210px] sm:h-[240px] lg:h-[260px] overflow-hidden rounded-xs cursor-pointer bg-neutral-100"
@@ -73,7 +64,6 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
           </div>
         </div>
 
-        {/* Livadni med */}
         <div
           onClick={() => onSelectCategory('livadni')}
           className="group relative h-[210px] sm:h-[240px] lg:h-[260px] overflow-hidden rounded-xs cursor-pointer bg-neutral-100"
@@ -92,7 +82,6 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
           </div>
         </div>
 
-        {/* Ostali proizvodi */}
         <div
           onClick={() => onSelectCategory('ostalo')}
           className="group relative h-[210px] sm:h-[240px] lg:h-[260px] overflow-hidden rounded-xs cursor-pointer bg-neutral-100"
@@ -110,9 +99,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             </h3>
           </div>
         </div>
-
       </div>
-
     </section>
   );
 };

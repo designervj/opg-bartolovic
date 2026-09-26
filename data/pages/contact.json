@@ -1,0 +1,39 @@
+{
+  "name": "contact",
+  "title": "Kontaktiraj nas",
+  "hero": {
+    "title": "Kontaktiraj nas",
+    "subtitle": "Imate pitanje o našim proizvodima, narudžbi ili suradnji? Rado ćemo vam pomoći!",
+    "bgImage": "../img/contact-img.png"
+  },
+  "contactDetails": {
+    "title": "Kontakt podatci",
+    "location": {
+      "title": "Lokacija",
+      "address": "Ulica Janka Leskovara 15",
+      "city": "31550 Valpovo",
+      "icon": "../img/Solid.svg"
+    },
+    "phone": {
+      "title": "Nazovite nas",
+      "numbers": ["+123 456 7890", "+123 456 7891"],
+      "icon": "../img/phone.svg"
+    },
+    "email": {
+      "title": "Email",
+      "address": "info@opgbartolovic.hr",
+      "icon": "../img/mail-01.svg"
+    }
+  },
+  "contactForm": {
+    "title": "Pošalji nam poruku",
+    "submitButtonText": "Pošalji",
+    "successMessage": "Hvala vam na poruci! Javit ćemo vam se u najkraćem mogućem roku."
+  },
+  "map": {
+    "title": "Pronađi nas",
+    "embedUrl": "https://maps.google.com/maps?q=Valpovo,Ulica%20Janka%20Leskovara%2015,Croatia&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "directLink": "https://www.google.com/maps/search/?api=1&query=Valpovo+Ulica+Janka+Leskovara+15",
+    "buttonText": "Otvori na Mapama"
+  }
+}

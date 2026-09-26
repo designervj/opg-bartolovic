@@ -96,20 +96,20 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
   return (
     <div className="w-full bg-[#F7F5F0] min-h-screen py-10 sm:py-16">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Outer White Card Container */}
         <div className="bg-background p-6 sm:p-10 lg:p-14 shadow-xs rounded-xs">
-          
+
           {step === 'form' ? (
             /* ======================================================== */
             /* 1. CHECKOUT FORM PAGE (Exact match to "Checkout (1).png") */
             /* ======================================================== */
             <div className="animate-fade-in space-y-8">
-              
+
               {/* Main Title */}
-              <h1 className="lg:text-[34px] text-foreground">
+              <h4 className="lg:text-[34px] text-foreground">
                 Checkout
-              </h1>
+              </h4>
 
               {/* Coupon Notice Banner */}
               <div className="w-full bg-[#F5F2EB] border-t-2 border-neutral-900 px-5 sm:px-6 py-4 flex flex-col gap-3 shadow-xs">
@@ -153,25 +153,25 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
               {/* Main 2-Column Checkout Layout */}
               <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-                
+
                 {/* ==================================================== */}
                 {/* LEFT COLUMN: Detalji o naplati (lg:col-span-7)       */}
                 {/* ==================================================== */}
                 <div className="lg:col-span-7 space-y-6">
-                  
+
                   {/* Section Title */}
                   <div className="border-b border-border pb-2">
-                    <h2 className="text-[15px] text-foreground">
+                    <h5 className="text-[18px] text-foreground">
                       Detalji o naplati
-                    </h2>
+                    </h5>
                   </div>
 
                   <div className="space-y-4">
-                    
+
                     {/* Row 1: Ime* & Prezime* */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-foreground mb-1.5">
+                        <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground text-[14px] font-semibold text-primary-foreground">
                           Ime<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -184,7 +184,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       </div>
 
                       <div>
-                        <label className="block text-foreground mb-1.5">
+                        <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                           Prezime<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -199,7 +199,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 2: Ime tvrtke (opcionalno) */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Ime tvrtke (opcionalno)
                       </label>
                       <input
@@ -212,7 +212,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 3: Država* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Država<span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -232,7 +232,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 4: Adresa* */}
                     <div className="space-y-2.5">
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Adresa<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -254,7 +254,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 5: Grad* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Grad<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -268,7 +268,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 6: Županija* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Županija<span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
@@ -292,7 +292,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 7: Poštanski broj* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Poštanski broj<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -306,7 +306,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 8: Telefon* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Telefon<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -320,7 +320,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
                     {/* Row 9: Email adresa* */}
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Email adresa<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -337,13 +337,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   {/* Section 2: Dodatne informacije */}
                   <div className="pt-6">
                     <div className="border-b border-border pb-2 mb-4">
-                      <h2 className="text-[15px] text-foreground">
+                      <h5 className="text-[15px] text-foreground">
                         Dodatne informacije
-                      </h2>
+                      </h5>
                     </div>
 
                     <div>
-                      <label className="block text-foreground mb-1.5">
+                      <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground">
                         Bilješke o narudžbi (opcionalno)
                       </label>
                       <textarea
@@ -363,11 +363,11 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 {/* ==================================================== */}
                 <div className="lg:col-span-5">
                   <div className="border border-border/80 rounded-xs p-6 bg-background space-y-5">
-                    
+
                     {/* Header */}
-                    <h2 className="text-[15px] text-foreground">
+                    <h5 className="text-[15px] text-foreground">
                       Tvoja narudžba
-                    </h2>
+                    </h5>
 
                     {/* Proizvod & Iznos header line */}
                     <div className="flex justify-between items-center text-foreground pb-2 border-b border-border">
@@ -438,7 +438,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                       <span className="tabular-nums text-foreground">{rawSubtotal.toFixed(2)}€</span>
                     </div>
 
-                    <div className="border-t border-border pt-3 flex justify-between items-center text-foreground">
+                    <div className="border-t border-border pt-3 flex justify-between items-center text-foreground font-bold">
                       <span>Ukupno</span>
                       <span className="tabular-nums">{total.toFixed(2)}€</span>
                     </div>
@@ -455,11 +455,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                             onChange={() => setFormData({ ...formData, paymentMethod: 'Kreditna kartica' })}
                             className="sr-only"
                           />
-                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${
-                            formData.paymentMethod === 'Kreditna kartica'
+                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${formData.paymentMethod === 'Kreditna kartica'
                               ? 'border-[#B89047] bg-background'
                               : 'border-border bg-background group-hover:border-neutral-400'
-                          }`}>
+                            }`}>
                             {formData.paymentMethod === 'Kreditna kartica' && (
                               <div className="w-2 h-2 rounded-full bg-[#B89047]" />
                             )}
@@ -480,11 +479,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                             onChange={() => setFormData({ ...formData, paymentMethod: 'Gotovina prilikom preuzimanja' })}
                             className="sr-only"
                           />
-                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${
-                            formData.paymentMethod === 'Gotovina prilikom preuzimanja'
+                          <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${formData.paymentMethod === 'Gotovina prilikom preuzimanja'
                               ? 'border-[#B89047] bg-background'
                               : 'border-border bg-background group-hover:border-neutral-400'
-                          }`}>
+                            }`}>
                             {formData.paymentMethod === 'Gotovina prilikom preuzimanja' && (
                               <div className="w-2 h-2 rounded-full bg-[#B89047]" />
                             )}
@@ -517,7 +515,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             /* 2. ORDER SUCCESS PAGE (Exact match to "Checkout (2).png") */
             /* ======================================================== */
             <div className="space-y-8 animate-fade-in max-w-4xl">
-              
+
               {/* Back to form button for convenience */}
               <div className="flex items-center justify-between">
                 <button
@@ -532,9 +530,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
               {/* Header Title & Subtitle */}
               <div>
-                <h1 className="lg:text-[34px] text-foreground">
+                <h4 className="lg:text-[34px] text-foreground">
                   Narudžba uspješna
-                </h1>
+                </h4>
                 <p className="mt-2 text-foreground/70">
                   Zahvaljujemo se na vašoj narudžbi.
                 </p>
@@ -542,43 +540,43 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
               {/* 4-Item KPI Horizontal Stat Bar with vertical separators */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-4 sm:gap-y-0 py-2 sm:py-3 border-y border-border sm:border-none">
-                
+
                 {/* 1. Broj narudžbe */}
                 <div className="sm:pr-6 sm:border-r border-border">
-                  <span className="block uppercase text-foreground/60">
+                  <span className="block uppercase text-secondary-foreground text-[12px] font-semibold">
                     Broj narudžbe
                   </span>
-                  <span className="block text-foreground mt-1">
+                  <span className="block uppercase text-black text-[14px] font-semibold mt-1">
                     {formData.orderNumber}
                   </span>
                 </div>
 
                 {/* 2. Datum */}
                 <div className="sm:px-6 sm:border-r border-border">
-                  <span className="block uppercase text-foreground/60">
+                  <span className="block uppercase text-secondary-foreground text-[12px] font-semibold">
                     Datum
                   </span>
-                  <span className="block text-foreground mt-1">
+                  <span className="block uppercase text-black text-[14px] font-semibold mt-1">
                     {formData.date}
                   </span>
                 </div>
 
                 {/* 3. Ukupno */}
                 <div className="sm:px-6 sm:border-r border-border">
-                  <span className="block uppercase text-foreground/60">
+                  <span className="block uppercase text-secondary-foreground text-[12px] font-semibold">
                     Ukupno
                   </span>
-                  <span className="block text-foreground mt-1">
+                  <span className="block uppercase text-black text-[14px] font-semibold mt-1">
                     {total.toFixed(2)}€
                   </span>
                 </div>
 
                 {/* 4. Način plaćanja */}
                 <div className="sm:pl-6">
-                  <span className="block uppercase text-foreground/60">
+                  <span className="block uppercase text-secondary-foreground text-[12px] font-semibold">
                     Način plaćanja
                   </span>
-                  <span className="block text-foreground mt-1">
+                  <span className="block uppercase text-black text-[14px] font-semibold">
                     {formData.paymentMethod}
                   </span>
                 </div>
@@ -590,10 +588,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               {/* ====================================================== */}
               <div className="border border-border rounded-xs overflow-hidden">
                 {/* Section Header */}
-                <div className="bg-background border-b border-border px-5 py-3.5">
-                  <h2 className="text-[14.5px] text-foreground">
+                <div className="bg-secondary border-b border-border px-5 py-3.5">
+                  <label className="text-[18px] font-semibold text-foreground">
                     Detalji narudžbe
-                  </h2>
+                  </label>
                 </div>
 
                 {/* Subheader: Proizvod | Iznos */}
@@ -681,27 +679,29 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               {/* ====================================================== */}
               <div className="border border-border rounded-xs overflow-hidden">
                 {/* Header */}
-                <div className="bg-background border-b border-border px-5 py-3.5">
-                  <h2 className="text-[14.5px] text-foreground">
+                <div className="bg-secondary border-b border-border px-5 py-3.5">
+                 <label className="text-[18px] font-semibold text-foreground">
                     Adresa za dostavu
-                  </h2>
+                  </label>
                 </div>
 
                 {/* Details Body */}
                 <div className="p-5 text-neutral-700 space-y-1.5">
                   <p className="text-foreground">{formData.firstName} {formData.lastName}</p>
-                  <p>{formData.street}</p>
-                  <p>{formData.city}</p>
-                  <p>{formData.postalCode}</p>
-                  <p>{formData.country}</p>
+                  <p className='pt-2'>{formData.street}</p>
+                  <p className='pt-2'>{formData.city}</p>
+                  <p className='pt-2'>{formData.postalCode}</p>
+                  <p className='pt-2'>{formData.country}</p>
 
                   <div className="pt-2 space-y-1">
-                    <p className="flex items-center gap-2 text-foreground">
-                      <Phone className="w-3.5 h-3.5 text-foreground/60 shrink-0" />
+                    <p className="flex items-center gap-2 text-foreground pt-1">
+                      {/* <Phone className="w-3.5 h-3.5 text-foreground/60 shrink-0" /> */}
+                       <img src="../img/phone (1).svg" alt='Phone Icon'></img>
                       <span>{formData.phone}</span>
                     </p>
-                    <p className="flex items-center gap-2 text-foreground">
-                      <Mail className="w-3.5 h-3.5 text-foreground/60 shrink-0" />
+                    <p className="flex items-center gap-2 text-foreground pt-2">
+                      {/* <Mail className="w-3.5 h-3.5 text-foreground/60 shrink-0" /> */}
+                       <img src="../img/mail-02.svg" alt='Phone Icon'></img>
                       <span>{formData.email}</span>
                     </p>
                   </div>

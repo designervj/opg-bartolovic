@@ -1,0 +1,29 @@
+{
+  "name": "product_detail",
+  "title": "Detalji Proizvoda",
+  "addedBanner": {
+    "suffix": "je dodano u košaricu.",
+    "buttonText": "Vidi košaricu"
+  },
+  "freeShippingText": "+ Besplatna dostava",
+  "addToCartButton": "Dodaj u košaricu",
+  "categoryPrefix": "Kategorija:",
+  "tabs": {
+    "description": "Opis proizvoda",
+    "reviews": "Recenzije"
+  },
+  "reviewsSection": {
+    "emptyMessage": "Još nema recenzija.",
+    "formTitlePrefix": "Budi prvi/a i ostavi recenziju za",
+    "emailDisclaimer": "Tvoja email adresa neće biti podijeljena.",
+    "yourRating": "Tvoja ocijena*",
+    "yourReview": "Tvoja recenzija*",
+    "nameLabel": "Ime*",
+    "emailLabel": "Email*",
+    "submitButtonText": "Potvrdi",
+    "successMessage": "Hvala vam! Vaša recenzija je uspješno poslana i objavljena."
+  },
+  "relatedProducts": {
+    "title": "Povezani proizvodi"
+  }
+}

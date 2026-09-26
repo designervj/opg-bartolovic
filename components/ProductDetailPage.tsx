@@ -85,7 +85,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
   return (
     <div className="w-full bg-background min-h-screen py-8 sm:py-12">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* ========================================================== */}
         {/* ADDED TO CART NOTIFICATION BANNER                         */}
         {/* (Matches "Product details page - added to cart.png")       */}
@@ -117,7 +117,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         {/* TOP SECTION: 2-COLUMN PRODUCT PRESENTATION                 */}
         {/* ========================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          
+
           {/* Left Column: Product Showcase Container */}
           <div className="lg:col-span-6">
             <div className="w-full aspect-[4/3] sm:aspect-[1.15/1] bg-[#F7F6F3] rounded-xs flex items-center justify-center p-8 sm:p-12 relative overflow-hidden">
@@ -139,7 +139,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
           {/* Right Column: Contiguous Purchase Information */}
           <div className="lg:col-span-6 flex flex-col justify-start pt-2">
-            
+
             {/* Category kicker */}
             <span className="text-[13px] text-foreground/60">
               {product.category}
@@ -170,7 +170,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
             {/* Stepper + Add to Cart Button */}
             <div className="mt-8 flex items-stretch gap-3">
-              
+
               {/* Stepper Input matching screenshot */}
               <div className="relative flex items-center border border-border rounded-xs bg-background w-20 px-3">
                 <span className="text-foreground select-none">
@@ -213,7 +213,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             {/* Category meta footer */}
             <div className="text-foreground/60">
               <span>Kategorija: </span>
-              <button 
+              <button
                 onClick={onNavigateShop}
                 className="text-sm font-[400] hover:text-primary transition-colors underline-offset-2 hover:underline cursor-pointer"
               >
@@ -229,18 +229,17 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
         {/* TABS SECTION: Opis proizvoda & Recenzije                   */}
         {/* ========================================================== */}
         <div className="mt-16 sm:mt-20">
-          
+
           {/* Tab Navigation with matching top bar indicator */}
           <div className="border-t border-border/80 pt-0 relative flex gap-8">
-            
+
             {/* Opis proizvoda tab button */}
             <button
               onClick={() => setActiveTab('description')}
-              className={`pt-3.5 pb-2    transition-all cursor-pointer relative -mt-[1px] ${
-                activeTab === 'description'
+              className={`pt-3.5 pb-2    transition-all cursor-pointer relative -mt-[1px] ${activeTab === 'description'
                   ? ' text-foreground border-t-2 border-neutral-900'
                   : 'text-foreground/60 hover:text-foreground'
-              }`}
+                }`}
             >
               Opis proizvoda
             </button>
@@ -248,11 +247,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
             {/* Recenzije tab button */}
             <button
               onClick={() => setActiveTab('reviews')}
-              className={`pt-3.5 pb-2    transition-all cursor-pointer relative -mt-[1px] ${
-                activeTab === 'reviews'
+              className={`pt-3.5 pb-2    transition-all cursor-pointer relative -mt-[1px] ${activeTab === 'reviews'
                   ? ' text-foreground border-t-2 border-neutral-900'
                   : 'text-foreground/60 hover:text-foreground'
-              }`}
+                }`}
             >
               Recenzije ({reviews.length})
             </button>
@@ -287,7 +285,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
           {/* ======================================================== */}
           {activeTab === 'reviews' && (
             <div className="pt-6">
-              
+
               {reviews.length === 0 ? (
                 <p className=" text-primary-foreground mb-6">
                   Još nema recenzija.
@@ -304,9 +302,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                         {[...Array(5)].map((_, idx) => (
                           <Star
                             key={idx}
-                            className={`w-3.5 h-3.5 ${
-                              idx < rev.rating ? 'fill-[#E5A83B]' : 'text-foreground/40'
-                            }`}
+                            className={`w-3.5 h-3.5 ${idx < rev.rating ? 'fill-[#E5A83B]' : 'text-foreground/40'
+                              }`}
                           />
                         ))}
                       </div>
@@ -318,7 +315,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
 
               {/* Review Form Box matching Product details page - reviews.png */}
               <div className="border border-border/80 bg-background p-6 sm:p-8 max-w-4xl">
-                
+
                 {reviewSubmitted && (
                   <div className="mb-5 p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-2">
                     <Check className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -353,11 +350,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                             aria-label={`Ocijeni s ${star} zvjezdica`}
                           >
                             <Star
-                              className={`w-4 h-4 ${
-                                isFilled
+                              className={`w-4 h-4 ${isFilled
                                   ? 'text-[#E5A83B] fill-[#E5A83B]'
                                   : 'text-foreground/40 stroke-[1.5]'
-                              }`}
+                                }`}
                             />
                           </button>
                         );
@@ -366,7 +362,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-foreground mb-1.5 font-semibold">
+                    <label className="block text-foreground mb-1.5 text-[14px] font-semibold text-primary-foreground font-semibold">
                       Tvoja recenzija*
                     </label>
                     <textarea
@@ -445,7 +441,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
               >
                 {/* Image Stage Container */}
                 <div className="relative w-full h-[270px] sm:h-[285px] bg-[#F7F6F3] rounded-xs flex items-center justify-center p-6 overflow-hidden transition-all duration-300 group-hover:bg-[#F3F0EA]">
-                  
+
                   {/* Optional % SALE badge */}
                   {relProduct.isSale && (
                     <div className="absolute top-3 left-3 z-10">
@@ -470,9 +466,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     {relProduct.category}
                   </span>
 
-                  <h3 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+                  <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
                     {relProduct.title}
-                  </h3>
+                  </h6>
 
                   {/* 5 Rating Stars */}
                   <div className="flex items-center gap-0.5 mt-1">

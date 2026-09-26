@@ -59,9 +59,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
             
             {/* 1. Filter by price */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
-              <h3 className="text-[17px] text-foreground mb-5">
+              <h5 className="text-[17px] text-foreground mb-5">
                 Filter by price
-              </h3>
+              </h5>
 
               {/* Dual Slider bar visual representation */}
               <div className="relative pt-1 pb-3">
@@ -85,9 +85,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
             {/* 2. Categories */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
               <div className="flex items-center justify-between mb-4">
-                <h4 className=" text-foreground f">
+                <h5 className=" text-foreground f">
                   Categories
-                </h4>
+                </h5>
                 {selectedCategory && (
                   <button
                     onClick={() => setSelectedCategory(null)}
@@ -127,9 +127,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
 
             {/* 3. Sale Sidebar */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
-              <h4 className=" text-foreground mb-5">
+              <h5 className=" text-foreground mb-5">
                 Sale
-              </h4>
+              </h5>
 
               <div className="space-y-6">
                 {SALE_SIDEBAR_PRODUCTS.map((saleItem) => (
@@ -156,9 +156,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
 
                     {/* Metadata */}
                     <div className="mt-2.5 flex flex-col">
-                      <h4 className="text-[13.5px] text-foreground group-hover:text-amber-900 transition-colors">
+                      <h6 className="text-[13.5px] text-foreground group-hover:text-amber-900 transition-colors">
                         {saleItem.title}
-                      </h4>
+                      </h6>
                       <div className="mt-1 flex items-center text-foreground tabular-nums">
                         {saleItem.originalPrice && (
                           <span className="text-foreground/40 line-through mr-2">
@@ -303,9 +303,9 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                         {product.category}
                       </span>
 
-                      <h3 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+                      <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
                         {product.title}
-                      </h3>
+                      </h6>
 
                       {/* 5 Rating Stars */}
                       <div className="flex items-center gap-0.5 mt-1">

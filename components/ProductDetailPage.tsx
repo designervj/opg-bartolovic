@@ -466,7 +466,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                     {relProduct.category}
                   </span>
 
-                  <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+                  <h6 className="text-[16px] text-foreground  mt-0.5 group-hover:text-primary font-bold transition-colors">
                     {relProduct.title}
                   </h6>
 

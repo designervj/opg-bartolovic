@@ -125,7 +125,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             <div className="p-3 bg-accent/70 border border-primary rounded-xs flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Truck className="w-4 h-4 text-primary" />
-                <span className="text-amber-900">
+                <span className="text-primary">
                   {items.length} {items.length === 1 ? 'proizvod' : 'proizvoda'} u košarici
                 </span>
               </div>
@@ -233,7 +233,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     name="payment"
                     checked={formData.paymentMethod === 'cod'}
                     onChange={() => setFormData({ ...formData, paymentMethod: 'cod' })}
-                    className="accent-amber-800"
+                    className="accent-primary"
                   />
                   <span>Plaćanje pouzećem (gotovinom pri preuzimanju)</span>
                 </label>
@@ -244,7 +244,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
                     name="payment"
                     checked={formData.paymentMethod === 'card'}
                     onChange={() => setFormData({ ...formData, paymentMethod: 'card' })}
-                    className="accent-amber-800"
+                    className="accent-primary"
                   />
                   <span>Kartično plaćanje (Sigurni CorvusPay)</span>
                 </label>

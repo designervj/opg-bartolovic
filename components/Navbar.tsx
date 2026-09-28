@@ -1,5 +1,6 @@
 import React from 'react';
 import { User, ShoppingBag } from 'lucide-react';
+import { useTheme } from '../app/ThemeContext';
 
 interface NavbarProps {
   cartCount: number;
@@ -21,6 +22,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAbout,
 }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { logoUrl } = useTheme();
+
+  // Determine final logo source: prefer dynamic URL from DB, fallback to local SVG
+  const resolvedLogoUrl = logoUrl || '../img/logo.svg';
 
   const handleNav = (view: 'home' | 'shop' | 'about' | 'contact') => {
     onSelectView(view);
@@ -38,7 +43,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => handleNav('home')}
             className="cursor-pointer flex-shrink-0"
           >
-            <img src="../img/logo.svg" alt="logo" className="h-12 w-auto" />
+            <img src={resolvedLogoUrl} alt="logo" className="h-12 w-auto" />
           </div>
 
           {/* Center Navigation Links — Desktop only */}
@@ -78,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="button"
               aria-label="Korisnički račun"
               onClick={onOpenContact}
-              className="hidden md:flex p-1.5 text-neutral-700 hover:text-amber-900 transition-colors cursor-pointer rounded-full hover:bg-neutral-100"
+              className="hidden md:flex p-1.5 text-foreground/70 hover:text-primary transition-colors cursor-pointer rounded-full hover:bg-secondary"
             >
               <User className="w-5 h-5 stroke-[1.8]" />
             </button>
@@ -96,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="relative p-1">
                 <ShoppingBag className="w-5 h-5 text-foreground stroke-[1.8] group-hover:text-primary transition-colors" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-black flex items-center justify-center text-[10px] animate-scale-in">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px] animate-scale-in">
                     {cartCount}
                   </span>
                 )}
@@ -134,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         {/* Drawer Header */}
         <div className="flex items-center justify-between px-6 h-[74px] border-b border-border flex-shrink-0">
-          <img src="../img/logo.svg" alt="logo" className="h-8 w-auto" />
+          <img src={resolvedLogoUrl} alt="logo" className="h-8 w-auto" />
           <button
             type="button"
             aria-label="Zatvori menu"
@@ -188,7 +193,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="relative">
                 <ShoppingBag className="w-5 h-5 text-foreground stroke-[1.8]" />
                 {cartCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-black flex items-center justify-center text-[10px]">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px]">
                     {cartCount}
                   </span>
                 )}

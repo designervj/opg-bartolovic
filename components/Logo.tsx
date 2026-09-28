@@ -7,12 +7,11 @@ interface LogoProps {
 
 export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' }) => {
   const isDark = variant === 'dark' || variant === 'footer';
-  const color = isDark ? '#CEAA74' : '#8C653C';
-  const textColor = isDark ? 'text-[#CEAA74]' : 'text-[#8C653C]';
+  const color = isDark ? 'var(--primary-light, var(--primary, #CEAA74))' : 'var(--primary, #8C653C)';
+  const textColor = isDark ? 'text-primary-light' : 'text-primary';
 
   return (
     <div className={`flex ${variant === 'footer' ? 'flex-col items-center gap-1.5' : 'items-center gap-2.5'} select-none cursor-pointer ${className}`}>
-      {/* Handcrafted vector capsule bee emblem matching the official brandmark */}
       <svg
         width={variant === 'footer' ? "46" : "36"}
         height={variant === 'footer' ? "46" : "36"}
@@ -21,7 +20,6 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
         xmlns="http://www.w3.org/2000/svg"
         className="shrink-0 transition-transform duration-300 hover:scale-105"
       >
-        {/* Outer pill/capsule boundary */}
         <rect
           x="20"
           y="6"
@@ -32,8 +30,6 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
           strokeWidth="3.2"
           fill="none"
         />
-
-        {/* Bee Antennae */}
         <path
           d="M 47 25 C 44 20, 40 21, 38 23"
           stroke={color}
@@ -46,11 +42,7 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
           strokeWidth="2.2"
           strokeLinecap="round"
         />
-
-        {/* Bee Head */}
         <circle cx="50" cy="28" r="4.5" stroke={color} strokeWidth="2.2" fill="none" />
-
-        {/* Bee Wings Left & Right */}
         <path
           d="M 46 32 C 32 24, 28 38, 45 42"
           stroke={color}
@@ -63,8 +55,6 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
           strokeWidth="2.2"
           strokeLinecap="round"
         />
-
-        {/* Lower petals / honeycomb comb leaves */}
         <path
           d="M 50 42 C 40 46, 32 60, 48 68 C 49 68.5, 50 69, 50 69"
           stroke={color}
@@ -79,8 +69,6 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
           fill="none"
           strokeLinecap="round"
         />
-
-        {/* Flower petal / honey dipper center stem */}
         <line
           x1="50"
           y1="40"
@@ -90,21 +78,15 @@ export const Logo: React.FC<LogoProps> = ({ variant = 'light', className = '' })
           strokeWidth="2.4"
           strokeLinecap="round"
         />
-
-        {/* Honeycomb horizontal tier ribs */}
         <line x1="42" y1="52" x2="58" y2="52" stroke={color} strokeWidth="2" strokeLinecap="round" />
         <line x1="40" y1="60" x2="60" y2="60" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
-        
-        {/* Honey drop at bottom */}
         <path
           d="M 50 72 C 46 76, 46 80, 50 82 C 54 80, 54 76, 50 72 Z"
           fill={color}
         />
       </svg>
 
-      <span
-        className={`    uppercase ${textColor}`}
-      >
+      <span className={`uppercase font-bold ${textColor}`}>
         BARTOLOVIĆ
       </span>
     </div>

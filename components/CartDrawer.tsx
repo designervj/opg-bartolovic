@@ -61,7 +61,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           <div className="px-6 py-3.5 bg-accent/70 border-b border-primary">
             <div className="flex justify-between items-center mb-1.5">
               {remainingForFreeShipping > 0 ? (
-                <span className="text-amber-900">
+                <span className="text-primary">
                   Dodajte još <strong className="">{remainingForFreeShipping.toFixed(2)} €</strong> za besplatnu dostavu!
                 </span>
               ) : (

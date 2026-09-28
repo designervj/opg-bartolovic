@@ -47,7 +47,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
   }, [selectedCategory, minPrice, maxPrice, sortBy]);
 
   return (
-    <div className="w-full bg-[#F7F7F7] min-h-screen py-8 sm:py-12 border-b border-border/50">
+    <div className="w-full bg-muted/30 min-h-screen py-8 sm:py-12 border-b border-border/50">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -107,8 +107,8 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                         onClick={() => setSelectedCategory(isSelected ? null : cat.name)}
                         className={`w-full flex items-center justify-between py-1 transition-colors cursor-pointer text-left ${
                           isSelected
-                            ? 'text-amber-900 '
-                            : 'text-neutral-700 hover:text-amber-900'
+                            ? 'text-primary '
+                            : 'text-neutral-700 hover:text-primary'
                         }`}
                       >
                         <span className="flex items-center gap-2">
@@ -156,7 +156,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
 
                     {/* Metadata */}
                     <div className="mt-2.5 flex flex-col">
-                      <h6 className="text-[13.5px] text-foreground group-hover:text-amber-900 transition-colors">
+                      <h6 className="text-[13.5px] text-foreground group-hover:text-primary transition-colors">
                         {saleItem.title}
                       </h6>
                       <div className="mt-1 flex items-center text-foreground tabular-nums">
@@ -184,7 +184,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
             <nav className="flex items-center gap-1.5 text-foreground/60 mb-2">
               <button
                 onClick={onNavigateHome}
-                className="hover:text-amber-900 transition-colors cursor-pointer"
+                className="hover:text-primary transition-colors cursor-pointer"
               >
                 Home
               </button>
@@ -193,7 +193,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
               {selectedCategory && (
                 <>
                   <span>/</span>
-                  <span className="text-amber-900">{selectedCategory}</span>
+                  <span className="text-primary">{selectedCategory}</span>
                 </>
               )}
             </nav>
@@ -303,7 +303,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                         {product.category}
                       </span>
 
-                      <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+                      <h6 className="text-[16px] text-foreground  mt-0.5 group-hover:text-primary font-bold transition-colors">
                         {product.title}
                       </h6>
 

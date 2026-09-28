@@ -15,11 +15,9 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
 }) => {
   return (
     <section id="bestsellers" className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24">
-      
-      {/* Header Row: Title, Subtitle, "Vidi sve" button */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
         <div>
-          <h2 className="lg:text-[34px] text-foreground">
+          <h2 className="lg:text-[34px] text-foreground font-bold">
             Naši bestselleri
           </h2>
           <p className="mt-2 text-foreground/70 max-w-2xl">
@@ -27,18 +25,16 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
           </p>
         </div>
 
-        {/* Outline Vidi sve button */}
         <div className="shrink-0">
           <button
             onClick={onViewAll}
-            className="border border-neutral-800 hover:bg-foreground text-foreground hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer"
+            className="border border-primary text-primary hover:bg-primary hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer rounded-xs font-semibold"
           >
             Vidi sve
           </button>
         </div>
       </div>
 
-      {/* 4 Products Grid matching Frame 7.png */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
         {PRODUCTS.map((product) => (
           <div
@@ -46,19 +42,15 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
             className="group flex flex-col cursor-pointer"
             onClick={() => onQuickView(product)}
           >
-            {/* Image Container with Soft Neutral Studio Background */}
-            <div className="relative w-full h-[280px] sm:h-[290px] bg-[#F7F3F0] rounded-xs flex items-center justify-center p-6 overflow-hidden transition-all duration-300 group-hover:bg-[#F3F0EA]">
-              
-              {/* Optional % SALE badge for 4th card */}
+            <div className="relative w-full h-[280px] sm:h-[290px] bg-secondary/50 rounded-xs flex items-center justify-center p-6 overflow-hidden transition-all duration-300 group-hover:bg-secondary">
               {product.isSale && (
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="bg-foreground text-white px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-xs">
+                  <span className="bg-primary text-white px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-xs text-xs font-semibold">
                     % SALE
                   </span>
                 </div>
               )}
 
-              {/* Product Image */}
               <img
                 src={product.image}
                 alt={product.title}
@@ -66,7 +58,6 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
                 className="max-h-[220px] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105 filter drop-shadow-sm"
               />
 
-              {/* Hover Quick-Action Overlay Buttons */}
               <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center gap-2">
                 <button
                   type="button"
@@ -74,7 +65,7 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
                     e.stopPropagation();
                     onAddToCart(product);
                   }}
-                  className="flex-1 bg-foreground hover:bg-primary text-white py-2.5 px-3 rounded-xs flex items-center justify-center gap-2 transition-colors shadow-sm cursor-pointer"
+                  className="flex-1 bg-primary hover:bg-primary-hover text-white py-2.5 px-3 rounded-xs flex items-center justify-center gap-2 transition-colors shadow-sm cursor-pointer font-semibold text-xs"
                 >
                   <ShoppingCart className="w-3.5 h-3.5" />
                   <span>Dodaj u košaricu</span>
@@ -91,44 +82,35 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
                   <Eye className="w-3.5 h-3.5" />
                 </button>
               </div>
-
             </div>
 
-            {/* Product Meta Below Image */}
             <div className="pt-3.5 flex flex-col">
-              {/* Category */}
-              <span className="text-[14px] text-[#646772]">
+              <span className="text-[14px] text-muted-foreground">
                 {product.category}
               </span>
 
-              {/* Title */}
-              <h6 className="text-[16px] text-[#232323]  mt-0.5 group-hover:text-primary font-bold transition-colors">
+              <h6 className="text-[16px] text-foreground mt-0.5 group-hover:text-primary font-bold transition-colors">
                 {product.title}
               </h6>
 
-              {/* 5 Rating Stars in Amber */}
               <div className="flex items-center gap-0.5 mt-1">
                 {[...Array(5)].map((_, i) => (
-                  // <Star key={i} className="w-3.5 h-3.5 fill-[#E5A83B]" />
-                  <img src="../img/single-star.svg" alt='star'></img>
+                  <img key={i} src="../img/single-star.svg" alt='star' />
                 ))}
               </div>
 
-              {/* Price */}
-              <div className="mt-1.5 flex items-center text-foreground tabular-nums">
+              <div className="mt-1.5 flex items-center text-foreground tabular-nums font-semibold">
                 {product.originalPrice && (
-                  <span className="text-[#232323] line-through mr-2">
+                  <span className="text-muted-foreground line-through mr-2">
                     {product.originalPrice.toFixed(2)} €
                   </span>
                 )}
                 <span>{product.price.toFixed(2)} €</span>
               </div>
             </div>
-
           </div>
         ))}
       </div>
-
     </section>
   );
 };

@@ -14,21 +14,21 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
   onViewAll,
 }) => {
   return (
-    <section id="bestsellers" className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-24">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 sm:mb-10">
-        <div>
+    <section id="bestsellers" className="container mx-auto px-4  pb-20 sm:pb-24">
+      <div className="flex items-center justify-between mb-12">
+        <div className='col-10'>
           <h2 className="lg:text-[34px] text-foreground font-bold">
             Naši bestselleri
           </h2>
-          <p className="mt-2 text-foreground/70 max-w-2xl">
+          <p className="mt-2 text-foreground/70 ">
             Ne znate koji med odabrati? Inspirirajte se kolekcijom naših najprodavanijih mednih proizvoda.
           </p>
         </div>
 
-        <div className="shrink-0">
+        <div className="shrink-0 col-2">
           <button
             onClick={onViewAll}
-            className="border border-primary text-primary hover:bg-primary hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer rounded-xs font-semibold"
+            className="border border-black text-black hover:bg-primary hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer rounded-xs font-semibold"
           >
             Vidi sve
           </button>

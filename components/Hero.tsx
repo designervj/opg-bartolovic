@@ -30,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
         <div className="mt-8">
           <button
             onClick={onExplore}
-            className="group relative inline-flex items-center justify-center px-8 py-3.5 border border-primary bg-primary hover:bg-primary-hover text-white uppercase transition-all duration-300 shadow-lg active:scale-95 cursor-pointer font-semibold rounded-xs"
+            className="group relative inline-flex items-center justify-center px-8 py-3.5 border border-white hover:border-primary hover:bg-primary-hover text-white uppercase transition-all duration-300 shadow-lg active:scale-95 cursor-pointer font-semibold rounded-xs"
           >
             Pogledaj ponudu
           </button>

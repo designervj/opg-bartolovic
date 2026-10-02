@@ -83,9 +83,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               type="button"
               aria-label="Korisnički račun"
               onClick={onOpenContact}
-              className="hidden md:flex p-1.5 text-foreground/70 hover:text-primary transition-colors cursor-pointer rounded-full hover:bg-secondary"
+              className="hidden md:flex p-1.5 transition-colors cursor-pointer rounded-full"
             >
-              <User className="w-5 h-5 stroke-[1.8]" />
+              {/* <User className="w-5 h-5 stroke-[1.8]" /> */}
+              <img src="../img/user-header.svg" alt='User'></img>
             </button>
 
             {/* Cart */}
@@ -99,7 +100,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {cartTotal.toFixed(2)}€
               </span>
               <div className="relative p-1">
-                <ShoppingBag className="w-5 h-5 text-foreground stroke-[1.8] group-hover:text-primary transition-colors" />
+                {/* <ShoppingBag className="w-5 h-5 text-foreground stroke-[1.8] group-hover:text-primary transition-colors" /> */}
+                
+                   <img src="../img/shopping-cart-1.svg" alt='Shopping'></img>
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-primary text-white flex items-center justify-center text-[10px] animate-scale-in">
                     {cartCount}

@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: 'OPG Bartolović - Prirodni domaći med',
   description:
     'OPG Bartolović - Iz košnice do tvog doma, prirodno, s ljubavlju. Vrhunski slavonski med iz vlastitih pčelinjaka u Valpovu.',
+  icons: {
+    icon: '/favicon-1.jpg',
+    shortcut: '/favicon-1.jpg',
+  },
   openGraph: {
     title: 'OPG Bartolović - Prirodni domaći med',
     description:

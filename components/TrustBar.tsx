@@ -17,9 +17,9 @@ export const TrustBar: React.FC = () => {
               </div>
 
               {/* Title */}
-              <h5 className="text-md font-bold text-foreground">
+              <h6 className="text-md font-bold text-foreground">
                 {item.title}
-              </h5>
+              </h6>
 
               {/* Subtitle */}
               <p className="mt-1 text-[14px] text-foreground/60">

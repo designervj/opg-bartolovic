@@ -10,7 +10,7 @@ export const FeatureCards: React.FC = () => {
         {FEATURE_CARDS.map((item) => (
           <div
             key={item.id}
-            className="bg-secondary border border-border/50 rounded-2xl p-6 sm:p-7 flex flex-col items-start transition-all duration-300 hover:shadow-md hover:border-primary group"
+            className="bg-secondary border border-border/50 rounded-2xl p-6 sm:p-4 flex flex-col items-start transition-all duration-300 hover:shadow-md hover:border-primary group"
           >
             {/* Circular Icon Container */}
             <div className="flex items-center justify-center mb-5 shrink-0 transition-transform group-hover:scale-105">
@@ -23,7 +23,7 @@ export const FeatureCards: React.FC = () => {
             </h6>
 
             {/* Description */}
-            <p className="text-primary-foreground font-sm">
+            <p className="text-primary-foreground font-sm text-sm">
               {item.description}
             </p>
           </div>

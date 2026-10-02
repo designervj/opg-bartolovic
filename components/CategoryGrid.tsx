@@ -18,7 +18,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" /> */}
           <div className="absolute bottom-6 left-6 sm:bottom-7 sm:left-7 z-10">
             <h3 className="lg:text-[24px] font-semibold  tracking-[3px] text-white drop-shadow-md">
               Med od bagrema
@@ -36,7 +36,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" /> */}
           <div className="absolute bottom-6 left-6 sm:bottom-7 sm:left-7 z-10">
             <h3 className="lg:text-[24px] font-semibold  tracking-[3px] text-white drop-shadow-md">
               Med od lipe
@@ -56,7 +56,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" /> */}
           <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 z-10">
             <h3 className="lg:text-[24px] font-semibold  tracking-[3px] text-white drop-shadow-md">
               Cvijetni med
@@ -74,7 +74,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" /> */}
           <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 z-10">
             <h3 className="lg:text-[24px] font-semibold  tracking-[3px] text-white drop-shadow-md">
               Livadni med
@@ -92,7 +92,7 @@ export const CategoryGrid: React.FC<CategoryGridProps> = ({ onSelectCategory }) 
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent opacity-90 transition-opacity group-hover:opacity-95" /> */}
           <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 z-10">
             <h3 className="lg:text-[24px] font-semibold  tracking-[3px] text-white drop-shadow-md">
               Ostali proizvodi

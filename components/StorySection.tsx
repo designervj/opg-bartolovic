@@ -35,7 +35,7 @@ export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore }) => {
             <div className="mt-8">
               <button
                 onClick={onLearnMore}
-                className="border border-neutral-900 hover:bg-foreground text-foreground hover:text-white px-6 py-2.5 uppercase transition-colors duration-200 cursor-pointer"
+                className="border border-neutral-900 hover:bg-foreground text-foreground hover:text-white px-6 py-2.5 font-semibold text-sm transition-colors duration-200 cursor-pointer"
               >
                 Više o nama
               </button>

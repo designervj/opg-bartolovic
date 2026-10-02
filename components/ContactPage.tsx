@@ -48,7 +48,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 text-center px-4 max-w-2xl mx-auto space-y-3">
+        <div className="relative z-10 text-center px-4 max-w-2xl mx-auto space-y-6">
           <h1 className="text-white">
             Kontaktiraj  nas
           </h1>
@@ -63,7 +63,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
       {/* 2. MAIN 2-COLUMN CONTACT LAYOUT                          */}
       {/* ======================================================== */}
       <section className="py-14 sm:py-20 bg-background">
-        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 ">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             
@@ -82,7 +82,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   
                   {/* Card 1: Lokacija */}
-                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2 border border-border">
+                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2">
                     <div>
                       {/* <MapPin className="w-4 h-4 stroke-[2] shrink-0 text-primary" /> */}
                       <img src="../img/Solid.svg" alt='Map Pin'></img>
@@ -98,7 +98,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   </div>
 
                   {/* Card 2: Nazovite nas */}
-                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2 border border-border">
+                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2">
                     <div>
                       {/* <Phone className="w-4 h-4 stroke-[2] shrink-0" /> */}
                       <img src="../img/phone.svg" alt='Map Pin'></img>
@@ -113,7 +113,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   </div>
 
                   {/* Card 3: Email */}
-                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2 border border-border">
+                  <div className="bg-secondary p-5 flex gap-2 rounded-xs space-y-2">
                     <div>
                       {/* <Mail className="w-4 h-4 stroke-[2] shrink-0" /> */}
                       <img src="../img/mail-01.svg" alt='Map Pin'></img>
@@ -137,7 +137,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
 
               {/* Part B: Pošalji nam poruku */}
               <div className="space-y-6">
-                <h4 className="text-foreground">
+                <h4 className="text-foreground ">
                   Pošalji nam poruku
                 </h4>
 
@@ -152,7 +152,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   {/* Ime* */}
                   <div>
                     <label className="block text-primary-foreground font-semibold text-sm mb-1.5">
-                      Ime<span className="text-red-500">*</span>
+                      Ime<span className="text-[#CC2B52]">*</span>
                     </label>
                     <input
                       required
@@ -166,7 +166,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   {/* Email* */}
                   <div>
                     <label className="block text-primary-foreground font-semibold text-sm mb-1.5">
-                      Email<span className="text-red-500">*</span>
+                      Email<span className="text-[#CC2B52]">*</span>
                     </label>
                     <input
                       required
@@ -180,7 +180,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   {/* Naslov* */}
                   <div>
                     <label className="block text-primary-foreground font-semibold text-sm mb-1.5">
-                      Naslov<span className="text-red-500">*</span>
+                      Naslov<span className="text-[#7C8393]">*</span>
                     </label>
                     <input
                       required
@@ -194,7 +194,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   {/* Poruka* */}
                   <div>
                     <label className="block text-primary-foreground font-semibold text-sm mb-1.5">
-                      Poruka<span className="text-red-500">*</span>
+                      Poruka<span className="text-[#7C8393]">*</span>
                     </label>
                     <textarea
                       required
@@ -209,7 +209,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="bg-[#1C1F20] hover:bg-neutral-800 text-white uppercase py-3 px-8 rounded-xs transition-colors duration-200 cursor-pointer shadow-xs active:scale-95"
+                      className="bg-[#232323] hover:bg-neutral-800 text-white text-sm font-semibold  py-3 px-8 rounded-xs transition-colors duration-200 cursor-pointer shadow-xs active:scale-95"
                     >
                       Pošalji
                     </button>
@@ -264,7 +264,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                   href="https://www.google.com/maps/search/?api=1&query=Valpovo+Ulica+Janka+Leskovara+15"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center font-semibold gap-2 tracking-[1px] text-foreground hover:text-primary transition-colors cursor-pointer group"
+                  className="inline-flex items-center font-semibold gap-2 text-foreground hover:text-primary transition-colors cursor-pointer group"
                 >
                   <MapIcon className="w-5 h-5 text-foreground group-hover:text-primary stroke-[2]" />
                   <span className="">Otvori na Mapama</span>

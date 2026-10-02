@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({
             }}
             className="cursor-pointer transition-opacity hover:opacity-90"
           >
-            <img src={resolvedDarkLogoUrl} alt='logo' className="h-10 w-auto" />
+            <img src={resolvedDarkLogoUrl} alt='logo' className="h-18 w-auto" />
           </div>
 
           {/* 2. Center Nav Links */}

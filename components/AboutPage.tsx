@@ -63,14 +63,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
                 </p>
               </div>
 
-              <div className="pt-2">
+              {/* <div className="pt-2">
                 <button
                   onClick={onNavigateShop}
                   className="inline-flex items-center justify-center bg-foreground hover:bg-neutral-800 text-white uppercase px-6 py-3 rounded-xs transition-colors cursor-pointer"
                 >
                   Istraži naše proizvode
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* Right: Honeycomb Hexagon Photo Cluster */}
@@ -122,12 +122,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
 
             {/* Right Specialties List */}
             <div className="lg:col-span-6 space-y-6">
-              <h6 className="text-foreground">
+              <span className="text-foreground font-bold" style={{fontSize:"18px"}}>
                 Specijalizirani smo za razne vrste meda i proizvode na bazi meda poput:
-              </h6>
+              </span>
 
               {/* Checkmark List */}
-              <ul className="space-y-3.5">
+              <ul className="space-y-3.5 pt-4">
                 {[
                   'Bagremovog meda',
                   'Meda sa saćem',

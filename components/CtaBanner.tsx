@@ -41,7 +41,7 @@ export const CtaBanner: React.FC<CtaBannerProps> = ({ onOrderNow }) => {
           <div className="mt-4 sm:mt-6">
             <button
               onClick={onOrderNow}
-              className="border border-white/90 hover:border-white bg-foreground/30 hover:bg-background text-white hover:text-neutral-950 uppercase text-xs sm:text-sm px-5 sm:px-7 py-2 sm:py-2.5 transition-all duration-300 cursor-pointer shadow-md backdrop-blur-xs"
+              className="border border-white/90 hover:border-white bg-foreground/30 hover:bg-background text-white hover:text-neutral-950  text-xs sm:text-sm px-5 sm:px-7 py-2 sm:py-2.5 transition-all duration-300 cursor-pointer shadow-md backdrop-blur-xs"
             >
               Naruči sada
             </button>

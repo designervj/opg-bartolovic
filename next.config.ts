@@ -1,8 +1,13 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: process.cwd(),
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        '@': path.join(process.cwd(), 'src'),
+      },
+    },
   },
 };
 

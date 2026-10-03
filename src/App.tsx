@@ -1,26 +1,28 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { FeatureCards } from './components/FeatureCards';
-import { CategoryGrid } from './components/CategoryGrid';
-import { Bestsellers } from './components/Bestsellers';
-import { StorySection } from './components/StorySection';
-import { TrustBar } from './components/TrustBar';
-import { CtaBanner } from './components/CtaBanner';
-import { Footer } from './components/Footer';
-import { ProductListingPage } from './components/ProductListingPage';
-import { ProductDetailPage } from './components/ProductDetailPage';
-import { CartPage } from './components/CartPage';
-import { CheckoutPage } from './components/CheckoutPage';
-import { AboutPage } from './components/AboutPage';
-import { ContactPage } from './components/ContactPage';
-import { CartDrawer, CartItem } from './components/CartDrawer';
-import { AboutModal } from './components/AboutModal';
-import { ContactModal } from './components/ContactModal';
-import { LegalModal } from './components/LegalModal';
-import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from './data/honeyData';
+import { Navbar } from '@/components/Navbar';
+import { Hero } from '@/components/Hero';
+import { FeatureCards } from '@/components/FeatureCards';
+import { CategoryGrid } from '@/components/CategoryGrid';
+import { Bestsellers } from '@/components/Bestsellers';
+import { StorySection } from '@/components/StorySection';
+import { TrustBar } from '@/components/TrustBar';
+import { CtaBanner } from '@/components/CtaBanner';
+import { Footer } from '@/components/Footer';
+import { ProductListingPage } from '@/components/ProductListingPage';
+import { ProductDetailPage } from '@/components/ProductDetailPage';
+import { CartPage } from '@/components/CartPage';
+import { CheckoutPage } from '@/components/CheckoutPage';
+import { AboutPage } from '@/components/AboutPage';
+import { ContactPage } from '@/components/ContactPage';
+import { CartDrawer, CartItem } from '@/components/CartDrawer';
+import { AboutModal } from '@/components/AboutModal';
+import { ContactModal } from '@/components/ContactModal';
+import { LegalModal } from '@/components/LegalModal';
+import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from '@/data/honeyData';
+import { AdminBar } from '@/components/AdminBar';
+import CmsPage from '@/components/cms/CmsPage';
 import { Check } from 'lucide-react';
 
 type View = 'home' | 'shop' | 'about' | 'contact' | 'detail' | 'cart' | 'checkout';
@@ -72,6 +74,7 @@ export default function App() {
     },
   ]);
 
+  const [isEditable, setIsEditable] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -212,6 +215,9 @@ export default function App() {
           </button>
         </div>
       )}
+
+      {/* 0. Kalp-Admin Bar */}
+      <AdminBar isEditable={isEditable} onToggleEditMode={setIsEditable} />
 
       {/* 1. Navbar */}
       <Navbar

@@ -25,7 +25,7 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Row: Brand Logo, Centered Nav Links, Right Socials */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-16 pt-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-18 pt-6">
           
           {/* 1. Left Brand Zone */}
           <div 
@@ -35,7 +35,7 @@ export const Footer: React.FC<FooterProps> = ({
             }}
             className="cursor-pointer transition-opacity hover:opacity-90"
           >
-            <img src={resolvedDarkLogoUrl} alt='logo' className="h-18 w-auto" />
+            <img src={resolvedDarkLogoUrl} alt='logo' className="h-20 w-auto" />
           </div>
 
           {/* 2. Center Nav Links */}

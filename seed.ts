@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Import data from honeyData.ts
-import { ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from './data/honeyData';
+import { ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from './src/data/honeyData';
 
 dotenv.config();
 
@@ -40,7 +40,7 @@ async function seed() {
 
     // 2. Seed Pages
     const pagesCollection = db.collection('site_pages');
-    const pagesDir = path.join(process.cwd(), 'data', 'pages');
+    const pagesDir = path.join(process.cwd(), 'src', 'data', 'pages');
 
     if (fs.existsSync(pagesDir)) {
       const files = fs.readdirSync(pagesDir).filter((file) => file.endsWith('.json'));

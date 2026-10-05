@@ -528,3 +528,9 @@
 body.annotator-active {
   cursor: crosshair;
 }
+
+
+button{
+  font-size: 13px;
+  text-transform: capitalize;
+}

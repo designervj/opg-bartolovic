@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Map as MapIcon, Check } from 'lucide-react';
+import EditableText from '@/components/shared/EditableText';
 
 interface ContactPageProps {
   onShowToast: (message: string) => void;
+  isEditable?: boolean;
+  pageData?: any;
+  onSave?: (sectionId: string, fieldPath: string, value: string) => void;
 }
 
-export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
+export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast, isEditable = false, pageData, onSave = () => {} }) => {
+  const section = (type: string) => pageData?.content?.find((item: any) => item.type === type || item.adminTitle === type);
+  const hero = section('hero');
+  const details = section('contactDetails');
+  const form = section('contactForm');
+  const map = section('map');
+  const save = (sectionId: string | undefined, fieldPath: string) => (value: string) => sectionId && onSave(sectionId, fieldPath, value);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,12 +59,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
 
         {/* Content */}
         <div className="relative z-10 text-center px-4 max-w-2xl mx-auto space-y-6">
-          <h1 className="text-white">
-            Kontaktiraj  nas
-          </h1>
+          <EditableText tag="h1" value={hero?.props?.title || 'Kontaktiraj nas'} isEditable={isEditable} onSave={save(hero?.id, 'props.title')} className="text-white" />
           <div className="text-white/95 max-w-lg mx-auto space-y-1">
-            <p>Imate pitanje o našim proizvodima, narudžbi ili suradnji?</p>
-            <p>Rado ćemo vam pomoći!</p>
+            <EditableText tag="p" value={hero?.props?.subtitle || 'Imate pitanje o našim proizvodima, narudžbi ili suradnji? Rado ćemo vam pomoći!'} isEditable={isEditable} onSave={save(hero?.id, 'props.subtitle')} />
           </div>
         </div>
       </section>
@@ -74,9 +81,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
               
               {/* Part A: Kontakt podatci */}
               <div className="space-y-6">
-                <h4 className="text-foreground">
-                  Kontakt podatci
-                </h4>
+                <EditableText tag="h4" value={details?.props?.title || 'Kontakt podatci'} isEditable={isEditable} onSave={save(details?.id, 'props.title')} className="text-foreground" />
 
                 {/* 3 Info Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -89,11 +94,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                      
                     </div>
                     <div className="text-secondary-foreground pl-2">
-                       <h6 className="text-secondary-foreground pb-2">
-                        Lokacija
-                      </h6>
-                      <p>Ulica Janka Leskovara 15</p>
-                      <p>31550 Valpovo</p>
+                       <EditableText tag="h6" value={details?.props?.location?.title || 'Lokacija'} isEditable={isEditable} onSave={save(details?.id, 'props.location.title')} className="text-secondary-foreground pb-2" />
+                      <EditableText tag="p" value={details?.props?.location?.address || 'Ulica Janka Leskovara 15'} isEditable={isEditable} onSave={save(details?.id, 'props.location.address')} />
+                      <EditableText tag="p" value={details?.props?.location?.city || '31550 Valpovo'} isEditable={isEditable} onSave={save(details?.id, 'props.location.city')} />
                     </div>
                   </div>
 
@@ -104,11 +107,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                       <img src="../img/phone.svg" alt='Map Pin'></img>
                     </div>
                     <div className=" text-secondary-foreground pl-2">
-                       <h6 className=" text-secondary-foreground pb-2">
-                        Nazovite nas
-                      </h6>
-                      <p>+123 456 7890</p>
-                      <p>+123 456 7891</p>
+                       <EditableText tag="h6" value={details?.props?.phone?.title || 'Nazovite nas'} isEditable={isEditable} onSave={save(details?.id, 'props.phone.title')} className="text-secondary-foreground pb-2" />
+                      <EditableText tag="p" value={details?.props?.phone?.numbers?.[0] || '+123 456 7890'} isEditable={isEditable} onSave={save(details?.id, 'props.phone.numbers.0')} />
+                      <EditableText tag="p" value={details?.props?.phone?.numbers?.[1] || '+123 456 7891'} isEditable={isEditable} onSave={save(details?.id, 'props.phone.numbers.1')} />
                     </div>
                   </div>
 
@@ -122,10 +123,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
                     
                     </div>
                     <div className=" text-secondary-foreground pl-2">
-                        <h6 className=" text-secondary-foreground pb-2">
-                        Email
-                      </h6>
-                      <p>info@opgbartolovic.hr</p>
+                        <EditableText tag="h6" value={details?.props?.email?.title || 'Email'} isEditable={isEditable} onSave={save(details?.id, 'props.email.title')} className="text-secondary-foreground pb-2" />
+                      <EditableText tag="p" value={details?.props?.email?.address || 'info@opgbartolovic.hr'} isEditable={isEditable} onSave={save(details?.id, 'props.email.address')} />
                     </div>
                   </div>
 
@@ -137,9 +136,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
 
               {/* Part B: Pošalji nam poruku */}
               <div className="space-y-6">
-                <h4 className="text-foreground ">
-                  Pošalji nam poruku
-                </h4>
+                <EditableText tag="h4" value={form?.props?.title || 'Pošalji nam poruku'} isEditable={isEditable} onSave={save(form?.id, 'props.title')} className="text-foreground" />
 
                 {isSubmitted && (
                   <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xs flex items-center gap-3 text-emerald-800 animate-fade-in">
@@ -223,9 +220,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
             {/* RIGHT COLUMN: Pronađi nas (Map Section)              */}
             {/* ==================================================== */}
             <div className="lg:col-span-6 space-y-6">
-              <h4 className="text-foreground">
-                Pronađi nas
-              </h4>
+              <EditableText tag="h4" value={map?.props?.title || 'Pronađi nas'} isEditable={isEditable} onSave={save(map?.id, 'props.title')} className="text-foreground" />
 
               {/* Map Canvas / Container matching the exact screenshot */}
               <div className="relative border border-border rounded-xs overflow-hidden shadow-xs group bg-background">

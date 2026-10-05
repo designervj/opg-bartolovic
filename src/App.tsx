@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { Hero } from '@/components/Hero';
 import { FeatureCards } from '@/components/FeatureCards';
@@ -24,6 +24,8 @@ import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, SALE_SIDEBAR_PRODUCTS } 
 import { AdminBar } from '@/components/AdminBar';
 import CmsPage from '@/components/cms/CmsPage';
 import { Check } from 'lucide-react';
+import { PageData } from '@/lib/getPageData';
+import { saveField } from '@/lib/store/pages/saveField';
 
 type CategoryFilter = { name: string; count: number };
 
@@ -167,6 +169,8 @@ export default function App() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [currentPageData, setCurrentPageData] = useState<PageData | null>(null);
+  const canEditCurrentPage = isEditable && Boolean(currentPageData);
 
   // Cart calculations
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
@@ -195,6 +199,46 @@ export default function App() {
 
     loadShopCatalog();
   }, []);
+
+  const currentPageSlug = currentView === 'home' ? 'home' : currentView === 'detail' ? 'product-detail' : currentView;
+
+  useEffect(() => {
+    let isMounted = true;
+    fetch(`/api/cms/pages?slug=${encodeURIComponent(currentPageSlug)}`, { cache: 'no-store' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        const data = Array.isArray(payload?.data)
+          ? payload.data.find((page: any) => page.slug === currentPageSlug)
+          : payload?.data || null;
+        if (isMounted) setCurrentPageData(data);
+      })
+      .catch(() => {
+        if (isMounted) setCurrentPageData(null);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [currentPageSlug]);
+
+  const getCmsSection = useCallback(
+    (type: string) => currentPageData?.content?.find((section: any) => section.type === type || section.adminTitle === type),
+    [currentPageData]
+  );
+
+  const handleCmsSave = useCallback(
+    async (sectionId: string, fieldPath: string, value: string) => {
+      if (!currentPageData) return false;
+      try {
+        const updated = await saveField(currentPageData, sectionId, fieldPath, value);
+        setCurrentPageData(updated);
+        return true;
+      } catch (error) {
+        console.error('Inline edit save failed:', error);
+        return false;
+      }
+    },
+    [currentPageData]
+  );
 
   useEffect(() => {
     const applyRoute = () => {
@@ -345,7 +389,7 @@ export default function App() {
           /* ======================================================= */
           /* KONTAKT PAGE (from Kontakt.png)                         */
           /* ======================================================= */
-          <ContactPage onShowToast={showToast} />
+          <ContactPage onShowToast={showToast} isEditable={canEditCurrentPage} pageData={currentPageData} onSave={handleCmsSave} />
         ) : currentView === 'about' ? (
           /* ======================================================= */
           /* O NAMA PAGE (from O nama.png)                           */
@@ -353,6 +397,9 @@ export default function App() {
           <AboutPage
             onNavigateShop={handleNavigateToShop}
             onNavigateContact={handleNavigateToContact}
+            isEditable={canEditCurrentPage}
+            pageData={currentPageData}
+            onSave={handleCmsSave}
           />
         ) : currentView === 'checkout' ? (
           /* ======================================================= */
@@ -404,17 +451,55 @@ export default function App() {
           /* HOME PAGE (from Frame 7.png)                            */
           /* ======================================================= */
           <>
-            <Hero onExplore={handleNavigateToShop} />
-            <FeatureCards />
-            <CategoryGrid onSelectCategory={() => handleNavigateToShop()} />
+            <Hero
+              onExplore={handleNavigateToShop}
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('hero')?.id}
+              sectionProps={getCmsSection('hero')?.props}
+              onSave={handleCmsSave}
+            />
+            <FeatureCards
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('featureCards')?.id}
+              sectionProps={getCmsSection('featureCards')?.props as any[]}
+              onSave={handleCmsSave}
+            />
+            <CategoryGrid
+              onSelectCategory={() => handleNavigateToShop()}
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('categoriesGrid')?.id}
+              sectionProps={getCmsSection('categoriesGrid')?.props}
+              onSave={handleCmsSave}
+            />
             <Bestsellers
               onAddToCart={handleAddToCart}
               onQuickView={handleOpenProductDetail}
               onViewAll={handleNavigateToShop}
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('bestsellers')?.id}
+              sectionProps={getCmsSection('bestsellers')?.props}
+              onSave={handleCmsSave}
             />
-            <StorySection onLearnMore={handleNavigateToAbout} />
-            <TrustBar />
-            <CtaBanner onOrderNow={handleNavigateToShop} />
+            <StorySection
+              onLearnMore={handleNavigateToAbout}
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('storySection')?.id}
+              sectionProps={getCmsSection('storySection')?.props}
+              onSave={handleCmsSave}
+            />
+            <TrustBar
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('trustBar')?.id}
+              sectionProps={getCmsSection('trustBar')?.props as any[]}
+              onSave={handleCmsSave}
+            />
+            <CtaBanner
+              onOrderNow={handleNavigateToShop}
+              isEditable={canEditCurrentPage}
+              sectionId={getCmsSection('ctaBanner')?.id}
+              sectionProps={getCmsSection('ctaBanner')?.props}
+              onSave={handleCmsSave}
+            />
           </>
         )}
       </main>

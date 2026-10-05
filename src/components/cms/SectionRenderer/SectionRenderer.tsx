@@ -38,26 +38,30 @@ export function SectionRenderer({
 
   switch (type) {
     case "hero":
-      return <Hero onExplore={() => onNavigate("shop")} />;
+      return <Hero onExplore={() => onNavigate("shop")} isEditable={isEditable} sectionId={section.id} sectionProps={section.props} onSave={onSave} />;
     case "featureCards":
-      return <FeatureCards />;
+      return <FeatureCards isEditable={isEditable} sectionId={section.id} sectionProps={section.props as any[]} onSave={onSave} />;
     case "categoriesGrid":
-      return <CategoryGrid onSelectCategory={() => onNavigate("shop")} />;
+      return <CategoryGrid onSelectCategory={() => onNavigate("shop")} isEditable={isEditable} sectionId={section.id} sectionProps={section.props} onSave={onSave} />;
     case "bestsellers":
       return (
         <Bestsellers
           onAddToCart={() => {}}
           onQuickView={(product) => onSelectProduct(product)}
           onViewAll={() => onNavigate("shop")}
+          isEditable={isEditable}
+          sectionId={section.id}
+          sectionProps={section.props}
+          onSave={onSave}
         />
       );
     case "storySection":
     case "story":
-      return <StorySection onLearnMore={() => onNavigate("about")} />;
+      return <StorySection onLearnMore={() => onNavigate("about")} isEditable={isEditable} sectionId={section.id} sectionProps={section.props} onSave={onSave} />;
     case "trustBar":
-      return <TrustBar />;
+      return <TrustBar isEditable={isEditable} sectionId={section.id} sectionProps={section.props as any[]} onSave={onSave} />;
     case "ctaBanner":
-      return <CtaBanner onOrderNow={() => onNavigate("shop")} />;
+      return <CtaBanner onOrderNow={() => onNavigate("shop")} isEditable={isEditable} sectionId={section.id} sectionProps={section.props} onSave={onSave} />;
     case "about":
       return (
         <AboutPage

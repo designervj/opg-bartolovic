@@ -1,28 +1,34 @@
 import React from 'react';
 import { Star, ShoppingCart, Eye } from 'lucide-react';
 import { Product, PRODUCTS } from '../data/honeyData';
+import EditableText from '@/components/shared/EditableText';
 
 interface BestsellersProps {
   onAddToCart: (product: Product) => void;
   onQuickView: (product: Product) => void;
   onViewAll: () => void;
+  isEditable?: boolean;
+  sectionId?: string;
+  sectionProps?: Record<string, any>;
+  onSave?: (sectionId: string, fieldPath: string, value: string) => void;
 }
 
 export const Bestsellers: React.FC<BestsellersProps> = ({
   onAddToCart,
   onQuickView,
   onViewAll,
+  isEditable = false,
+  sectionId = 'bestsellers-section',
+  sectionProps,
+  onSave = () => {},
 }) => {
+  const save = (fieldPath: string) => (value: string) => onSave(sectionId, fieldPath, value);
   return (
     <section id="bestsellers" className="container mx-auto px-4  pb-20 sm:pb-24">
       <div className="flex items-center justify-between mb-12">
         <div className='col-10'>
-          <h2 className="lg:text-[34px] text-foreground font-bold">
-            Naši bestselleri
-          </h2>
-          <p className="mt-2 text-foreground/70 ">
-            Ne znate koji med odabrati? Inspirirajte se kolekcijom naših najprodavanijih mednih proizvoda.
-          </p>
+          <EditableText tag="h2" value={sectionProps?.title || 'Naši bestselleri'} isEditable={isEditable} onSave={save('props.title')} className="lg:text-[34px] text-foreground font-bold" />
+          <EditableText tag="p" value={sectionProps?.subtitle || 'Ne znate koji med odabrati? Inspirirajte se kolekcijom naših najprodavanijih mednih proizvoda.'} isEditable={isEditable} onSave={save('props.subtitle')} className="mt-2 text-foreground/70" />
         </div>
 
         <div className="shrink-0 col-2">
@@ -30,7 +36,7 @@ export const Bestsellers: React.FC<BestsellersProps> = ({
             onClick={onViewAll}
             className="border border-black text-black hover:bg-primary hover:text-white px-5 py-2 uppercase transition-colors duration-200 cursor-pointer rounded-xs font-semibold"
           >
-            Vidi sve
+            <EditableText tag="span" value={sectionProps?.viewAllText || 'Vidi sve'} isEditable={isEditable} onSave={save('props.viewAllText')} />
           </button>
         </div>
       </div>

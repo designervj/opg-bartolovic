@@ -1,12 +1,23 @@
 import React from 'react';
 import { Check } from 'lucide-react';
+import EditableText from '@/components/shared/EditableText';
 
 interface AboutPageProps {
   onNavigateShop: () => void;
   onNavigateContact?: () => void;
+  isEditable?: boolean;
+  pageData?: any;
+  onSave?: (sectionId: string, fieldPath: string, value: string) => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
+export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop, isEditable = false, pageData, onSave = () => {} }) => {
+  const section = (type: string) => pageData?.content?.find((item: any) => item.type === type || item.adminTitle === type);
+  const hero = section('hero');
+  const story = section('story');
+  const specialties = section('specialties');
+  const team = section('team');
+  const save = (sectionId: string | undefined, fieldPath: string) => (value: string) => sectionId && onSave(sectionId, fieldPath, value);
+
   return (
     <div className="w-full bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
       
@@ -27,12 +38,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
 
         {/* Content */}
         <div className="relative z-10 text-center px-4 max-w-3xl mx-auto space-y-3 sm:space-y-4">
-          <h1 className="text-white">
-            O  nama
-          </h1>
-          <p className="text-white/95 max-w-2xl mx-auto">
-            Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama.
-          </p>
+          <EditableText tag="h1" value={hero?.props?.title || 'O nama'} isEditable={isEditable} onSave={save(hero?.id, 'props.title')} className="text-white" />
+          <EditableText tag="p" value={hero?.props?.subtitle || 'Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama.'} isEditable={isEditable} onSave={save(hero?.id, 'props.subtitle')} className="text-white/95 max-w-2xl mx-auto" />
         </div>
       </section>
 
@@ -45,22 +52,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
             
             {/* Left Content */}
             <div className="lg:col-span-6 space-y-6">
-              <h2 className="text-foreground">
-                OPG Bartolović – s<br className="hidden sm:inline" /> ljubavlju iz Valpova
-              </h2>
+              <EditableText tag="h2" value={story?.props?.title || 'OPG Bartolović – s ljubavlju iz Valpova'} isEditable={isEditable} onSave={save(story?.id, 'props.title')} className="text-foreground" />
 
               <div className="space-y-4 text-neutral-700">
-                <p>
-                  Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama. Brinemo o 150 košnica koje se nalaze u netaknutoj prirodi oko Valpova. Vjerujemo u održivo pčelarenje, poštujemo prirodu i svaku kap meda proizvodimo s najvećom pažnjom.
-                </p>
-
-                <p>
-                  Naš trud prepoznat je i nacionalno – sav naš med pakiran je u nacionalnu staklenku s oznakom “Med hrvatskih pčelinjaka”, jamčeći vam vrhunsku kvalitetu i podrijetlo.
-                </p>
-
-                <p className="text-foreground pt-1">
-                  Birajte lokalno, birajte prirodno. Birajte OPG Bartolović.
-                </p>
+                {(story?.props?.paragraphs || [
+                  'Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama. Brinemo o 150 košnica koje se nalaze u netaknutoj prirodi oko Valpova. Vjerujemo u održivo pčelarenje, poštujemo prirodu i svaku kap meda proizvodimo s najvećom pažnjom.',
+                  'Naš trud prepoznat je i nacionalno – sav naš med pakiran je u nacionalnu staklenku s oznakom “Med hrvatskih pčelinjaka”, jamčeći vam vrhunsku kvalitetu i podrijetlo.',
+                  'Birajte lokalno, birajte prirodno. Birajte OPG Bartolović.',
+                ]).map((paragraph: string, idx: number) => (
+                  <EditableText key={idx} tag="p" value={paragraph} isEditable={isEditable} onSave={save(story?.id, `props.paragraphs.${idx}`)} className={idx === 2 ? 'text-foreground pt-1' : ''} />
+                ))}
               </div>
 
               {/* <div className="pt-2">
@@ -122,33 +123,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
 
             {/* Right Specialties List */}
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-foreground font-bold" style={{fontSize:"18px"}}>
-                Specijalizirani smo za razne vrste meda i proizvode na bazi meda poput:
-              </span>
+              <EditableText tag="span" value={specialties?.props?.title || 'Specijalizirani smo za razne vrste meda i proizvode na bazi meda poput:'} isEditable={isEditable} onSave={save(specialties?.id, 'props.title')} className="text-foreground font-bold" style={{fontSize:"18px"}} />
 
               {/* Checkmark List */}
               <ul className="space-y-3.5 pt-4">
-                {[
+                {(specialties?.props?.list || [
                   'Bagremovog meda',
                   'Meda sa saćem',
                   'Livadnog i cvijetnog meda',
                   'Imunomeda, propolisa, peludi',
                   'Meda s orasima, sjemenkama i uljem konoplje',
-                ].map((item, idx) => (
+                ]).map((item: string, idx: number) => (
                   <li key={idx} className="flex items-center gap-3">
                     <div className="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
                       <Check className="w-3 h-3 stroke-[3]" />
                     </div>
-                    <span className="sm:text-[16px] text-foreground">
-                      {item}
-                    </span>
+                    <EditableText tag="span" value={item} isEditable={isEditable} onSave={save(specialties?.id, `props.list.${idx}`)} className="sm:text-[16px] text-foreground" />
                   </li>
                 ))}
               </ul>
 
-              <p className="pt-2 pe-2">
-                Naš cilj je pružiti vam prirodan i zdrav proizvod kojem možete vjerovati – za vaše zdravlje i svakodnevno uživanje.
-              </p>
+              <EditableText tag="p" value={specialties?.props?.footerText || 'Naš cilj je pružiti vam prirodan i zdrav proizvod kojem možete vjerovati – za vaše zdravlje i svakodnevno uživanje.'} isEditable={isEditable} onSave={save(specialties?.id, 'props.footerText')} className="pt-2 pe-2" />
             </div>
 
           </div>
@@ -163,15 +158,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigateShop }) => {
           
           {/* Header */}
           <div className="text-center max-w-2xl mx-auto space-y-3 mb-16">
-            <h2 className="text-foreground">
-              Naš tim
-            </h2>
-            <p className=" text-neutral-700">
-              Naš tim je mala, ali snažna obiteljska zajednica koja dijeli zajedničku strast prema pčelarstvu i očuvanju prirode.
-            </p>
-            <p className=" text-foreground/60">
-              Tko smo mi:
-            </p>
+            <EditableText tag="h2" value={team?.props?.title || 'Naš tim'} isEditable={isEditable} onSave={save(team?.id, 'props.title')} className="text-foreground" />
+            <EditableText tag="p" value={team?.props?.subtitle || 'Naš tim je mala, ali snažna obiteljska zajednica koja dijeli zajedničku strast prema pčelarstvu i očuvanju prirode.'} isEditable={isEditable} onSave={save(team?.id, 'props.subtitle')} className="text-neutral-700" />
+            <EditableText tag="p" value={team?.props?.introText || 'Tko smo mi:'} isEditable={isEditable} onSave={save(team?.id, 'props.introText')} className="text-foreground/60" />
           </div>
 
           {/* 3 Team Members in Hexagons */}

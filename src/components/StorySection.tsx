@@ -1,35 +1,31 @@
 import React from 'react';
+import EditableText from '@/components/shared/EditableText';
 
 interface StorySectionProps {
   onLearnMore: () => void;
+  isEditable?: boolean;
+  sectionId?: string;
+  sectionProps?: Record<string, any>;
+  onSave?: (sectionId: string, fieldPath: string, value: string) => void;
 }
 
-export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore }) => {
+export const StorySection: React.FC<StorySectionProps> = ({ onLearnMore, isEditable = false, sectionId = 'storySection-section', sectionProps, onSave = () => {} }) => {
+  const save = (fieldPath: string) => (value: string) => onSave(sectionId, fieldPath, value);
+  const descriptions = Array.isArray(sectionProps?.description) ? sectionProps.description : [
+    'Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje generacijama. Brinemo o 150 košnica koje se nalaze u netaknutoj prirodi oko Valpova. Vjerujemo u održivo pčelarenje, poštujemo prirodu i svaku kap meda proizvodimo s najvećom pažnjom.',
+    'Naš trud prepoznat je i nacionalno – sav naš med pakiran je u nacionalnu staklenku s oznakom "Med hrvatskih pčelinjaka", jamčeći vam vrhunsku kvalitetu i podrijetlo.',
+  ];
   return (
     <section className="w-full bg-[#F7F2EC] py-16 sm:py-20 lg:py-24 border-y border-border/40">
       <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-6 flex flex-col items-start">
-            <h2 className="lg:text-[34px] text-foreground">
-              OPG Bartolović – s<br className="hidden sm:inline" />
-              ljubavlju iz Valpova
-            </h2>
+            <EditableText tag="h2" value={sectionProps?.title || 'OPG Bartolović – s ljubavlju iz Valpova'} isEditable={isEditable} onSave={save('props.title')} className="lg:text-[34px] text-foreground" />
 
             <div className="mt-6 space-y-4 text-neutral-700">
-              <p>
-                Naše pčelarstvo nije samo posao – to je obiteljska priča koja traje
-                generacijama. Brinemo o 150 košnica koje se nalaze u netaknutoj prirodi oko
-                Valpova. Vjerujemo u održivo pčelarenje, poštujemo prirodu i svaku kap meda
-                proizvodimo s najvećom pažnjom.
-              </p>
-              <p>
-                Naš trud prepoznat je i nacionalno – sav naš med pakiran je u nacionalnu
-                staklenku s oznakom &quot;Med hrvatskih pčelinjaka&quot;, jamčeći vam vrhunsku
-                kvalitetu i podrijetlo.
-              </p>
-              <p className="text-foreground">
-                Birajte lokalno, birajte prirodno. Birajte OPG Bartolović.
-              </p>
+              {descriptions.map((description: string, idx: number) => (
+                <EditableText key={idx} tag="p" value={description} isEditable={isEditable} onSave={save(`props.description.${idx}`)} className={idx === descriptions.length - 1 ? 'text-foreground' : ''} />
+              ))}
             </div>
 
             <div className="mt-8">

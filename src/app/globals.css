@@ -461,3 +461,70 @@
 .title-text-md{
   font-size: 18px !important;
 }
+
+.editable-text {
+  border-radius: 4px;
+  cursor: text;
+  outline: 1px dashed rgba(198, 175, 135, 0.85);
+  outline-offset: 3px;
+  transition: background-color 0.15s ease, outline-color 0.15s ease;
+}
+
+.editable-text:hover,
+.editable-text-active {
+  background-color: rgba(198, 175, 135, 0.18);
+  outline-color: rgba(198, 175, 135, 1);
+}
+
+.editable-inline-input {
+  max-width: min(90vw, 100%);
+  border: 0;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #232323;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  outline: 2px solid var(--app-admin-accent, #C6AF87);
+  padding: 0 4px;
+}
+
+.editable-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.editable-save-btn,
+.editable-cancel-btn {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+  padding: 6px 10px;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.editable-save-btn {
+  background: var(--app-admin-accent, #C6AF87);
+  color: #232323;
+}
+
+.editable-cancel-btn {
+  background: #232323;
+  color: #fff;
+}
+
+.editable-save-btn:disabled,
+.editable-cancel-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+body.annotator-active {
+  cursor: crosshair;
+}

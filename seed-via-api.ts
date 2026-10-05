@@ -10,7 +10,7 @@ import path from 'path';
 
 dotenv.config();
 
-const FASTAPI_URL = (process.env.FASTAPI_URL || 'https://admin.kalptree.xyz/api').replace(/\/$/, '');
+const FASTAPI_URL = (process.env.FASTAPI_URL || 'https://admin.kalptree.xyz/api').replace(/\/api\/?$/, '').replace(/\/$/, '');
 const DB_NAME = process.env.TENANT_DB_NAME || 'kp_opg_bartolovic';
 
 const HEADERS = {
@@ -28,6 +28,12 @@ function loadPayload(slug: string): Record<string, any> {
   return {};
 }
 
+function loadCatalog(): Record<string, any> {
+  const catalogPath = path.join(process.cwd(), 'src', 'data', 'catalog.json');
+  if (!fs.existsSync(catalogPath)) return { products: [], categories: [] };
+  return JSON.parse(fs.readFileSync(catalogPath, 'utf-8'));
+}
+
 // ─── Page definitions with full CMS content ───────────────────────────────────
 
 function buildPages() {
@@ -38,6 +44,11 @@ function buildPages() {
   const cart = loadPayload('cart');
   const checkout = loadPayload('checkout');
   const productDetail = loadPayload('product_detail');
+  const catalog = loadCatalog();
+  const catalogCategories = (catalog.categories || []).map((category: any) => ({
+    name: category.name,
+    count: category.count,
+  }));
 
   return [
     {
@@ -248,7 +259,7 @@ function buildPages() {
           adminTitle: 'Filter kategorija',
           props: {
             title: { en: 'Filter po kategoriji' },
-            categories: shop.categoriesFilter || ['Svi proizvodi', 'Med u saću', 'Tekući med', 'Med s dodacima', 'Propolis i pelud'],
+            categories: catalogCategories.length ? catalogCategories : shop.categoriesFilter || ['Svi proizvodi', 'Med u saću', 'Tekući med', 'Med s dodacima', 'Propolis i pelud'],
           },
         },
         {
@@ -258,6 +269,14 @@ function buildPages() {
           props: {
             saleSidebarTitle: { en: shop.saleSidebarTitle || 'Akcijski proizvodi' },
             emptyText: { en: 'Nema pronađenih proizvoda.' },
+          },
+        },
+        {
+          id: 'shop-products-data',
+          type: 'products',
+          adminTitle: 'Products Data',
+          props: {
+            items: catalog.products || shop.products || [],
           },
         },
       ],
@@ -334,7 +353,7 @@ function buildPages() {
 // ─── API helpers ──────────────────────────────────────────────────────────────
 
 async function apiPost(path: string, body: any): Promise<any> {
-  const res = await fetch(`${FASTAPI_URL}/${path}`, {
+  const res = await fetch(`${FASTAPI_URL}/api/${path.replace(/^api\//, '')}`, {
     method: 'POST',
     headers: HEADERS,
     body: JSON.stringify(body),
@@ -343,7 +362,7 @@ async function apiPost(path: string, body: any): Promise<any> {
 }
 
 async function apiPut(path: string, body: any): Promise<any> {
-  const res = await fetch(`${FASTAPI_URL}/${path}`, {
+  const res = await fetch(`${FASTAPI_URL}/api/${path.replace(/^api\//, '')}`, {
     method: 'PUT',
     headers: HEADERS,
     body: JSON.stringify(body),
@@ -352,7 +371,7 @@ async function apiPut(path: string, body: any): Promise<any> {
 }
 
 async function apiGet(path: string): Promise<any> {
-  const res = await fetch(`${FASTAPI_URL}/${path}`, {
+  const res = await fetch(`${FASTAPI_URL}/api/${path.replace(/^api\//, '')}`, {
     method: 'GET',
     headers: HEADERS,
   });

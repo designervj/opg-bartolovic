@@ -20,10 +20,96 @@ import { CartDrawer, CartItem } from '@/components/CartDrawer';
 import { AboutModal } from '@/components/AboutModal';
 import { ContactModal } from '@/components/ContactModal';
 import { LegalModal } from '@/components/LegalModal';
-import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, CATEGORIES, FEATURE_CARDS, TRUST_ITEMS, SALE_SIDEBAR_PRODUCTS } from '@/data/honeyData';
+import { Product, ALL_PRODUCTS, CATEGORIES_FILTER_LIST, SALE_SIDEBAR_PRODUCTS } from '@/data/honeyData';
 import { AdminBar } from '@/components/AdminBar';
 import CmsPage from '@/components/cms/CmsPage';
 import { Check } from 'lucide-react';
+
+type CategoryFilter = { name: string; count: number };
+
+type ShopCatalog = {
+  products: Product[];
+  categoriesFilter: CategoryFilter[];
+  saleSidebarProducts: Product[];
+  saleSidebarTitle: string;
+};
+
+const fallbackShopCatalog: ShopCatalog = {
+  products: ALL_PRODUCTS,
+  categoriesFilter: CATEGORIES_FILTER_LIST,
+  saleSidebarProducts: SALE_SIDEBAR_PRODUCTS,
+  saleSidebarTitle: 'Akcijski proizvodi',
+};
+
+const unwrapLocale = (value: any): any => {
+  if (value && typeof value === 'object' && !Array.isArray(value) && typeof value.en === 'string') {
+    return value.en;
+  }
+
+  return value;
+};
+
+const normalizeProduct = (product: any): Product | null => {
+  if (!product?.id || !product?.title) return null;
+
+  return {
+    id: String(product.id),
+    category: String(unwrapLocale(product.category) || ''),
+    filterCategory: String(unwrapLocale(product.filterCategory) || unwrapLocale(product.category) || ''),
+    title: String(unwrapLocale(product.title) || ''),
+    weight: String(unwrapLocale(product.weight) || ''),
+    price: Number(product.price || 0),
+    originalPrice: product.originalPrice === undefined ? undefined : Number(product.originalPrice),
+    isSale: Boolean(product.isSale),
+    rating: Number(product.rating || 0),
+    reviewCount: Number(product.reviewCount || 0),
+    image: String(product.image || ''),
+    description: String(unwrapLocale(product.description) || ''),
+    inStock: product.inStock !== false,
+  };
+};
+
+const normalizeCategory = (category: any): CategoryFilter | null => {
+  const name = unwrapLocale(category?.name || category?.title || category);
+  if (!name) return null;
+
+  return {
+    name: String(name),
+    count: Number(category?.count || 0),
+  };
+};
+
+const extractShopCatalog = (payload: any): ShopCatalog | null => {
+  const page = Array.isArray(payload?.data)
+    ? payload.data.find((item: any) => item?.slug === 'shop' || item?.name === 'shop')
+    : payload?.data || payload;
+  const sections = page?.content || page?.sections || page?.payload?.content || [];
+  if (!Array.isArray(sections)) return null;
+
+  const productsSection = sections.find((section: any) => section.type === 'products');
+  const categoriesSection = sections.find((section: any) => section.type === 'categoriesFilter');
+  const productGridSection = sections.find((section: any) => section.type === 'productGrid');
+  const saleTitleSection = sections.find((section: any) => section.type === 'saleSidebarTitle');
+
+  const rawProducts = productGridSection?.props?.products || productsSection?.props?.items || productsSection?.props;
+  const rawCategories = productGridSection?.props?.categories || categoriesSection?.props?.categories || categoriesSection?.props;
+  const saleSidebarTitle = unwrapLocale(productGridSection?.props?.saleSidebarTitle || saleTitleSection?.props) || 'Akcijski proizvodi';
+
+  if (!Array.isArray(rawProducts) || !Array.isArray(rawCategories)) return null;
+
+  const products = rawProducts.map(normalizeProduct).filter(Boolean) as Product[];
+  const categoriesFilter = rawCategories.map(normalizeCategory).filter(Boolean) as CategoryFilter[];
+  const saleSidebarProducts = products.filter((product) => product.isSale);
+
+  if (!products.length || !categoriesFilter.length) return null;
+
+  return {
+    products,
+    categoriesFilter,
+    saleSidebarProducts: saleSidebarProducts.length ? saleSidebarProducts : fallbackShopCatalog.saleSidebarProducts,
+    saleSidebarTitle: String(saleSidebarTitle),
+  };
+};
 
 type View = 'home' | 'shop' | 'about' | 'contact' | 'detail' | 'cart' | 'checkout';
 
@@ -61,6 +147,7 @@ export default function App() {
   // Navigation states: 'home' | 'shop' | 'about' | 'contact' | 'detail' | 'cart' | 'checkout'
   const [currentView, setCurrentView] = useState<View>('home');
   const [selectedProduct, setSelectedProduct] = useState<Product>(ALL_PRODUCTS[0]); // Defaults to Med sa saćem, 450g
+  const [shopCatalog, setShopCatalog] = useState<ShopCatalog>(fallbackShopCatalog);
   
   // Seed cart with exact items from Cart.png & Checkout.png:
   const [cart, setCart] = useState<CartItem[]>([
@@ -91,6 +178,23 @@ export default function App() {
       setToastMessage(null);
     }, 2800);
   };
+
+  useEffect(() => {
+    const loadShopCatalog = async () => {
+      try {
+        const response = await fetch('/api/cms/pages?slug=shop', { cache: 'no-store' });
+        if (!response.ok) return;
+
+        const payload = await response.json();
+        const nextCatalog = extractShopCatalog(payload);
+        if (nextCatalog) {
+          setShopCatalog(nextCatalog);
+        }
+      } catch {}
+    };
+
+    loadShopCatalog();
+  }, []);
 
   useEffect(() => {
     const applyRoute = () => {
@@ -290,6 +394,10 @@ export default function App() {
             onAddToCart={handleAddToCart}
             onQuickView={handleOpenProductDetail}
             onNavigateHome={handleNavigateToHome}
+            products={shopCatalog.products}
+            categoriesFilter={shopCatalog.categoriesFilter}
+            saleSidebarProducts={shopCatalog.saleSidebarProducts}
+            saleSidebarTitle={shopCatalog.saleSidebarTitle}
           />
         ) : (
           /* ======================================================= */

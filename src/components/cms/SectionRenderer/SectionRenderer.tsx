@@ -68,11 +68,18 @@ export function SectionRenderer({
     case "contact":
       return <ContactPage onShowToast={() => {}} />;
     case "shop":
+    case "productGrid":
+    case "products":
+      if (type === "productGrid" && !Array.isArray(section.props?.products)) return null;
       return (
         <ProductListingPage
           onAddToCart={() => {}}
           onQuickView={(product) => onSelectProduct(product)}
           onNavigateHome={() => onNavigate("home")}
+          products={Array.isArray(section.props?.products) ? section.props.products : Array.isArray(section.props?.items) ? section.props.items : Array.isArray(section.props) ? section.props : undefined}
+          categoriesFilter={Array.isArray(section.props?.categories) ? section.props.categories : undefined}
+          saleSidebarProducts={Array.isArray(section.props?.products) ? section.props.products.filter((product: any) => product.isSale) : Array.isArray(section.props?.items) ? section.props.items.filter((product: any) => product.isSale) : undefined}
+          saleSidebarTitle={typeof section.props?.saleSidebarTitle === "string" ? section.props.saleSidebarTitle : section.props?.saleSidebarTitle?.en}
         />
       );
     default:

@@ -6,12 +6,20 @@ interface ProductListingPageProps {
   onAddToCart: (product: Product) => void;
   onQuickView: (product: Product) => void;
   onNavigateHome: () => void;
+  products?: Product[];
+  categoriesFilter?: Array<{ name: string; count: number }>;
+  saleSidebarProducts?: Product[];
+  saleSidebarTitle?: string;
 }
 
 export const ProductListingPage: React.FC<ProductListingPageProps> = ({
   onAddToCart,
   onQuickView,
   onNavigateHome,
+  products = ALL_PRODUCTS,
+  categoriesFilter = CATEGORIES_FILTER_LIST,
+  saleSidebarProducts = SALE_SIDEBAR_PRODUCTS,
+  saleSidebarTitle = 'Sale',
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [maxPrice, setMaxPrice] = useState<number>(50);
@@ -20,7 +28,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
 
   // Filter & sort logic
   const filteredProducts = useMemo(() => {
-    let list = [...ALL_PRODUCTS];
+    let list = [...products];
 
     if (selectedCategory) {
       list = list.filter((p) => p.filterCategory === selectedCategory || p.category === selectedCategory);
@@ -44,7 +52,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
     }
 
     return list;
-  }, [selectedCategory, minPrice, maxPrice, sortBy]);
+  }, [products, selectedCategory, minPrice, maxPrice, sortBy]);
 
   return (
     <div className="w-full bg-muted/30 min-h-screen py-8 sm:py-12 border-b border-border/50">
@@ -99,7 +107,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
               </div>
 
               <ul className="space-y-2.5">
-                {CATEGORIES_FILTER_LIST.map((cat) => {
+                {categoriesFilter.map((cat) => {
                   const isSelected = selectedCategory === cat.name;
                   return (
                     <li key={cat.name}>
@@ -128,11 +136,11 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
             {/* 3. Sale Sidebar */}
             <div className="bg-background p-6 rounded-xs shadow-xs border border-border">
               <h5 className=" text-foreground mb-5">
-                Sale
+                {saleSidebarTitle}
               </h5>
 
               <div className="space-y-6">
-                {SALE_SIDEBAR_PRODUCTS.map((saleItem) => (
+                {saleSidebarProducts.map((saleItem) => (
                   <div
                     key={saleItem.id}
                     className="group cursor-pointer flex flex-col"

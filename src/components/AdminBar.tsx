@@ -112,7 +112,7 @@ export function AdminBar({
         {/* Left — Dashboard link */}
         <div className="flex items-center shrink-0">
           <a
-            href="/login"
+            href="/kalptree"
             className="flex items-center gap-1.5 sm:gap-2 text-white/80 hover:text-white transition-colors duration-200 font-bold uppercase tracking-wider text-[10px] sm:text-[11px]"
           >
             <LayoutDashboard className="w-3.5 h-3.5 shrink-0" style={{ color: adminAccent }} />

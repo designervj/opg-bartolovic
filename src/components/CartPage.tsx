@@ -49,14 +49,14 @@ export const CartPage: React.FC<CartPageProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#F7F5F0] min-h-screen py-10 sm:py-16">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-[#F7F5F0] min-h-screen py-6 sm:py-16">
+      <div className="max-w-[1240px] mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Outer White Card Container */}
-        <div className="bg-background p-6 sm:p-10 lg:p-14 shadow-xs rounded-xs">
+        <div className="bg-background p-4 sm:p-10 lg:p-14 shadow-xs rounded-xs">
           
           {/* Main Title matching Cart.png and Cart (1).png */}
-          <h4 className="lg:text-[24px] text-foreground mb-8">
+          <h4 className="lg:text-[24px] text-foreground mb-5 sm:mb-8">
             Košarica
           </h4>
 
@@ -91,8 +91,107 @@ export const CartPage: React.FC<CartPageProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
               
               {/* Left Column: Cart Table & Coupon Row (lg:col-span-8) */}
-              <div className="lg:col-span-8">
-                <div className="border border-border rounded-xs overflow-hidden">
+              <div className="lg:col-span-8 min-w-0">
+                <div className="md:hidden space-y-3">
+                  {items.map(({ product, quantity }) => (
+                    <div key={product.id} className="rounded-sm border border-border bg-background p-3 shadow-xs">
+                      <div className="flex items-start gap-3">
+                        <div className="w-20 h-20 bg-[#F7F6F3] rounded-xs p-1.5 flex items-center justify-center shrink-0 border border-border">
+                          <img
+                            src={product.image}
+                            alt={product.title}
+                            referrerPolicy="no-referrer"
+                            className="max-h-full max-w-full object-contain filter drop-shadow-xs"
+                          />
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-start justify-between gap-2">
+                            <div className="min-w-0">
+                              <p className="text-[14px] font-bold leading-snug text-foreground">
+                                {product.title}
+                              </p>
+                              <p className="mt-0.5 text-[12px] text-foreground/55">
+                                {product.weight}
+                              </p>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => onRemoveItem(product.id)}
+                              className="-mr-1 -mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-foreground/45 transition hover:bg-neutral-100 hover:text-foreground"
+                              aria-label={`Ukloni ${product.title}`}
+                            >
+                              <XCircle className="h-5 w-5 stroke-[1.5]" />
+                            </button>
+                          </div>
+
+                          <div className="mt-3 grid grid-cols-2 gap-2 text-[12px]">
+                            <div className="rounded-xs bg-[#F7F5F0] px-3 py-2">
+                              <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/45">Cijena</span>
+                              <span className="mt-1 block font-bold tabular-nums text-foreground">{product.price.toFixed(2)}€</span>
+                            </div>
+                            <div className="rounded-xs bg-[#F7F5F0] px-3 py-2 text-right">
+                              <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-foreground/45">Iznos</span>
+                              <span className="mt-1 block font-bold tabular-nums text-foreground">{(product.price * quantity).toFixed(2)}€</span>
+                            </div>
+                          </div>
+
+                          <div className="mt-3 flex items-center justify-between gap-3">
+                            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/50">Količina</span>
+                            <div className="flex h-10 items-center overflow-hidden rounded-xs border border-border bg-background">
+                              <button
+                                type="button"
+                                onClick={() => onUpdateQuantity(product.id, -1)}
+                                className="flex h-10 w-10 items-center justify-center text-lg leading-none text-foreground/70 transition hover:bg-[#F7F5F0] hover:text-foreground"
+                                aria-label="Smanji količinu"
+                              >
+                                -
+                              </button>
+                              <span className="min-w-10 px-2 text-center text-sm font-bold tabular-nums text-foreground">{quantity}</span>
+                              <button
+                                type="button"
+                                onClick={() => onUpdateQuantity(product.id, 1)}
+                                className="flex h-10 w-10 items-center justify-center text-lg leading-none text-foreground/70 transition hover:bg-[#F7F5F0] hover:text-foreground"
+                                aria-label="Povećaj količinu"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="rounded-sm border border-border bg-[#FBFBFA] p-3">
+                    <form onSubmit={handleApplyCoupon} className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="Kupon kod"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value)}
+                        className="min-w-0 flex-1 rounded-xs border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-neutral-900"
+                      />
+                      <button
+                        type="submit"
+                        className="shrink-0 rounded-xs border border-neutral-900 bg-background px-4 py-2.5 text-[12px] font-bold uppercase text-foreground transition-colors hover:bg-foreground hover:text-white"
+                      >
+                        Primjeni
+                      </button>
+                    </form>
+
+                    <button
+                      type="button"
+                      onClick={handleUpdateCart}
+                      disabled={isUpdating}
+                      className="mt-3 w-full rounded-xs border border-border bg-background px-4 py-2.5 text-[12px] font-bold uppercase text-foreground/55 transition-colors hover:border-neutral-400 hover:text-neutral-700 disabled:opacity-60"
+                    >
+                      {isUpdating ? 'Ažuriranje...' : 'Ažuriraj košaricu'}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="hidden md:block border border-border rounded-xs overflow-hidden">
                   
                   {/* Table Header Row */}
                   <div className="bg-background border-b border-border px-4 py-3.5 grid grid-cols-12 text-foreground">

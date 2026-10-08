@@ -55,10 +55,10 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
   }, [products, selectedCategory, minPrice, maxPrice, sortBy]);
 
   return (
-    <div className="w-full bg-muted/30 min-h-screen py-8 sm:py-12 border-b border-border/50">
-      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full bg-muted/30 min-h-screen py-6 sm:py-12 border-b border-border/50">
+      <div className="w-full max-w-[1320px] mx-auto px-3 sm:px-6 lg:px-8">
         
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+        <div className="flex w-full flex-col lg:flex-row gap-6 lg:gap-8 items-start">
           
           {/* ========================================================== */}
           {/* LEFT SIDEBAR: Filter by Price, Categories, Sale           */}
@@ -186,7 +186,7 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
           {/* ========================================================== */}
           {/* RIGHT COLUMN: Breadcrumbs, Title, Sort, Product Grid       */}
           {/* ========================================================== */}
-          <main className="flex-1 bg-background p-6 sm:p-8 lg:p-10 rounded-xs shadow-xs border border-border min-w-0">
+          <main className="w-full flex-1 bg-background p-4 sm:p-8 lg:p-10 rounded-xs shadow-xs border border-border min-w-0">
             
             {/* Breadcrumbs */}
             <nav className="flex items-center gap-1.5 text-foreground/60 mb-2">
@@ -249,12 +249,12 @@ export const ProductListingPage: React.FC<ProductListingPageProps> = ({
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+              <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
                 {filteredProducts.map((product) => (
 
                   <div
                     key={product.id}
-                    className="group flex flex-col cursor-pointer"
+                    className="group flex w-full flex-col cursor-pointer"
                     onClick={() => onQuickView(product)}
                   >
                     {/* Image Stage Container */}
